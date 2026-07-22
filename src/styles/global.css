@@ -10,10 +10,16 @@ html {
 }
 
 body {
+	display: flex;
+	flex-direction: column;
 	min-width: 320px;
 	min-height: 100vh;
 	margin: 0;
 	background: #e9d9b9;
+}
+
+main {
+	flex: 1;
 }
 
 *,
