@@ -1,6 +1,7 @@
 ---
 import Header from "../components/astro/Header.astro";
 import Footer from "../components/astro/Footer.astro";
+import Hero from "../components/astro/Hero.astro";
 import "../styles/global.css";
 ---
 
@@ -12,11 +13,13 @@ import "../styles/global.css";
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content="Portfolio de Damian Aceves, desarrollador de software." />
-		<title>Damian Aceves | Desarrollador</title>
+		<title>Damian Aceves | Portfolio</title>
 	</head>
 	<body>
 		<Header />
-		<main id="inicio"></main>
+		<main id="inicio">
+			<Hero />
+		</main>
 		<Footer />
 	</body>
 </html>
