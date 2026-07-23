@@ -75,6 +75,109 @@ import "@fontsource-variable/pixelify-sans";
 	</div>
 </header>
 
+<script>
+	const header = document.querySelector<HTMLElement>(".site-header");
+	const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>(".nav-link"));
+	const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+	const setActiveLink = (hash: string) => {
+		navLinks.forEach((link) => {
+			const isActive = link.hash === hash;
+			link.classList.toggle("is-active", isActive);
+
+			if (isActive) {
+				link.setAttribute("aria-current", "page");
+			} else {
+				link.removeAttribute("aria-current");
+			}
+		});
+	};
+
+	const getHeaderHeight = () => header?.getBoundingClientRect().height ?? 0;
+
+	const updateHeaderOffset = () => {
+		document.documentElement.style.setProperty("--sticky-header-height", `${getHeaderHeight()}px`);
+	};
+
+	const updateActiveLinkFromScroll = () => {
+		const scrollMarker = window.scrollY + getHeaderHeight() + 16;
+		let activeHash = "#inicio";
+
+		navLinks.forEach((link) => {
+			const target = document.querySelector<HTMLElement>(link.hash);
+
+			if (target && window.scrollY + target.getBoundingClientRect().top <= scrollMarker) {
+				activeHash = link.hash;
+			}
+		});
+
+		setActiveLink(activeHash);
+	};
+
+	const scrollToHash = (hash: string) => {
+		if (hash === "#inicio") {
+			window.scrollTo({ top: 0, behavior: reducedMotion.matches ? "auto" : "smooth" });
+			return;
+		}
+
+		const target = document.querySelector<HTMLElement>(hash);
+
+		if (!target) return;
+
+		window.scrollTo({
+			top: Math.max(0, window.scrollY + target.getBoundingClientRect().top - getHeaderHeight() - 3),
+			behavior: reducedMotion.matches ? "auto" : "smooth",
+		});
+	};
+
+	if (header) {
+		updateHeaderOffset();
+		new ResizeObserver(() => {
+			updateHeaderOffset();
+			updateActiveLinkFromScroll();
+		}).observe(header);
+	}
+
+	document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
+		link.addEventListener("click", (event) => {
+			const hash = link.hash;
+
+			if (!hash) return;
+
+			event.preventDefault();
+			setActiveLink(hash);
+			scrollToHash(hash);
+			history.pushState(null, "", hash);
+		});
+	});
+
+	if (window.location.hash) {
+		setActiveLink(window.location.hash);
+	}
+
+	window.addEventListener("hashchange", () => {
+		if (window.location.hash) {
+			setActiveLink(window.location.hash);
+		}
+	});
+
+	let scrollAnimationFrame: number | undefined;
+	window.addEventListener(
+		"scroll",
+		() => {
+			if (scrollAnimationFrame) return;
+
+			scrollAnimationFrame = window.requestAnimationFrame(() => {
+				updateActiveLinkFromScroll();
+				scrollAnimationFrame = undefined;
+			});
+		},
+		{ passive: true },
+	);
+
+	updateActiveLinkFromScroll();
+</script>
+
 <style>
 	.site-header {
 		--forest: #0d4038;
