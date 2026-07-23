@@ -203,16 +203,16 @@ import "@fontsource-variable/pixelify-sans";
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		height: 36px;
-		padding: 3px 7px 3px 10px;
+		height: 32.4px;
+		padding: 2.7px 7px 2.7px 10px;
 		border-bottom: 3px ridge #b8a27d;
 		background: var(--forest);
 		box-shadow: inset 0 1px #2a675c, inset 0 -1px #06251f;
 	}
 
 	.window-bar > img {
-		width: 26px;
-		height: 26px;
+		width: 23.4px;
+		height: 23.4px;
 		object-fit: contain;
 		image-rendering: pixelated;
 	}
@@ -225,8 +225,8 @@ import "@fontsource-variable/pixelify-sans";
 	.window-control {
 		position: relative;
 		display: block;
-		width: 27px;
-		height: 27px;
+		width: 24.3px;
+		height: 24.3px;
 		border: 3px outset #d8c69f;
 		background: #d5c39e;
 		box-shadow: 1px 1px 0 #0a1915;
@@ -254,22 +254,23 @@ import "@fontsource-variable/pixelify-sans";
 
 	.window-control--close::before,
 	.window-control--close::after {
-		top: 11px;
-		left: 3px;
-		width: 16px;
+		top: 50%;
+		left: 50%;
+		width: 60%;
 		height: 2px;
+		transform-origin: center;
 	}
 
-	.window-control--close::before { transform: rotate(45deg); }
-	.window-control--close::after { transform: rotate(-45deg); }
+	.window-control--close::before { transform: translate(-50%, -50%) rotate(45deg); }
+	.window-control--close::after { transform: translate(-50%, -50%) rotate(-45deg); }
 
 	.header-content {
 		display: flex;
-		min-height: 128px;
+		min-height: 103.68px;
 		align-items: center;
 		justify-content: space-between;
 		gap: clamp(24px, 5vw, 80px);
-		padding: 11px clamp(22px, 4vw, 72px);
+		padding: 8.91px clamp(22px, 4vw, 72px);
 		border-bottom: 2px solid rgb(63 56 39 / 65%);
 	}
 
@@ -283,8 +284,8 @@ import "@fontsource-variable/pixelify-sans";
 	}
 
 	.brand-icon {
-		width: 108px;
-		height: 108px;
+		width: 87.48px;
+		height: 87.48px;
 		object-fit: contain;
 		image-rendering: pixelated;
 		filter: drop-shadow(3px 3px 0 rgb(49 41 24 / 35%));
@@ -295,7 +296,7 @@ import "@fontsource-variable/pixelify-sans";
 	.brand-name {
 		margin: 0;
 		color: var(--forest);
-		font-size: clamp(2rem, 3.15vw, 3.8rem);
+		font-size: clamp(2rem, 2.8vw, 3.8rem);
 		font-weight: 800;
 		letter-spacing: 0.025em;
 		line-height: 0.95;
@@ -305,7 +306,7 @@ import "@fontsource-variable/pixelify-sans";
 	.brand-name-accent { color: #7a301f; }
 
 	.brand-tagline {
-		margin: 12px 0 0;
+		margin: 0px 0 0;
 		font-size: clamp(0.95rem, 1.3vw, 1.35rem);
 		font-weight: 600;
 		letter-spacing: 0.015em;
@@ -325,10 +326,10 @@ import "@fontsource-variable/pixelify-sans";
 
 	.nav-link {
 		display: inline-flex;
-		min-height: 54px;
+		min-height: 43.74px;
 		align-items: center;
 		gap: 11px;
-		padding: 9px 13px;
+		padding: 7.29px 13px;
 		border: 2px solid transparent;
 		color: #171914;
 		font-size: clamp(1.05rem, 1.35vw, 1.5rem);
@@ -381,8 +382,8 @@ import "@fontsource-variable/pixelify-sans";
 	@media (max-width: 1180px) {
 		.header-content {
 			flex-direction: column;
-			gap: 8px;
-			padding-block: 14px 18px;
+			gap: 6.48px;
+			padding-block: 11.34px 14.58px;
 		}
 
 		.main-nav {
@@ -392,33 +393,31 @@ import "@fontsource-variable/pixelify-sans";
 	}
 
 	@media (max-width: 700px) {
-		.window-bar { height: 31px; }
-		.window-control { width: 23px; height: 23px; }
-		.window-control--close::before,
-		.window-control--close::after { top: 9px; left: 2px; }
+		.window-bar { height: 27.9px; }
+		.window-control { width: 20.7px; height: 20.7px; }
 
 		.header-content {
 			align-items: flex-start;
-			padding: 14px 14px 12px;
+			padding: 11.34px 14px 9.72px;
 		}
 
 		.brand { gap: 10px; }
-		.brand-icon { width: 78px; height: 78px; }
+		.brand-icon { width: 63.18px; height: 63.18px; }
 		.brand-name { font-size: clamp(1.55rem, 7.7vw, 2.4rem); }
-		.brand-tagline { margin-top: 7px; font-size: clamp(0.78rem, 3.5vw, 1rem); }
+		.brand-tagline { margin-top: 5.67px; font-size: clamp(0.78rem, 3.5vw, 1rem); }
 
 		.main-nav {
 			justify-content: flex-start;
 			overflow-x: auto;
-			padding: 7px 0 5px;
+			padding: 5.67px 0 4.05px;
 			scrollbar-color: var(--forest) #cdbc9c;
 			scrollbar-width: thin;
 		}
 
 		.nav-link {
-			min-height: 46px;
+			min-height: 37.26px;
 			gap: 7px;
-			padding: 7px 9px;
+			padding: 5.67px 9px;
 			font-size: 1rem;
 		}
 
