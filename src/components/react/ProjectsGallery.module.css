@@ -85,6 +85,7 @@
 
 .projectCard {
 	position: relative;
+	top: 0;
 	width: 100%;
 	overflow: hidden;
 	border: 4px ridge #b6a17b;
@@ -96,7 +97,7 @@
 	font-family: "Pixelify Sans Variable", monospace;
 	transform-origin: top center;
 	animation: windowBoot 380ms steps(5, end);
-	transition: transform 180ms steps(3, end), box-shadow 180ms ease, filter 180ms ease;
+	transition: top 180ms steps(3, end), box-shadow 180ms ease, filter 180ms ease;
 }
 
 .projectCard::after {
@@ -108,8 +109,8 @@
 }
 
 .projectCard:hover {
+	top: -7px;
 	filter: saturate(1.04);
-	transform: translateY(-7px) rotate(-0.25deg);
 	box-shadow:
 		10px 13px 0 rgb(50 40 24 / 22%),
 		inset 0 0 20px rgb(84 59 29 / 10%);

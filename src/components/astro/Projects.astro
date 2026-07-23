@@ -4,6 +4,14 @@ import ProjectsGallery from "../react/ProjectsGallery";
 ---
 
 <section class="projects" id="proyectos" aria-labelledby="projects-title">
+	<img
+		class="projects-vine"
+		src="/images/planta_proyectos.webp"
+		alt=""
+		aria-hidden="true"
+		decoding="async"
+	/>
+
 	<div class="projects-shell">
 		<header class="projects-heading">
 			<p class="projects-eyebrow">PORTFOLIO.EXE</p>
@@ -19,6 +27,9 @@ import ProjectsGallery from "../react/ProjectsGallery";
 	.projects {
 		--projects-paper: #eadabd;
 		--projects-ink: #171914;
+		position: relative;
+		isolation: isolate;
+		z-index: 0;
 		width: 100%;
 		padding: clamp(36px, 2vw, 72px) clamp(18px, 5vw, 80px) clamp(76px, 8vw, 120px);
 		border-inline: 3px ridge #b8a27d;
@@ -32,6 +43,18 @@ import ProjectsGallery from "../react/ProjectsGallery";
 		box-shadow: inset 0 0 45px rgb(82 55 21 / 14%);
 		color: var(--projects-ink);
 		font-family: "Pixelify Sans Variable", monospace;
+	}
+
+	.projects-vine {
+		position: absolute;
+		top: clamp(-125px, -8vw, -68px);
+		right: clamp(-18px, 1.5vw, 28px);
+		z-index: -1;
+		width: clamp(100px, 8vw, 185px);
+		height: auto;
+		image-rendering: pixelated;
+		pointer-events: none;
+		user-select: none;
 	}
 
 	.projects-shell {
@@ -73,6 +96,12 @@ import ProjectsGallery from "../react/ProjectsGallery";
 	@media (max-width: 560px) {
 		.projects {
 			padding-inline: 12px;
+		}
+
+		.projects-vine {
+			top: -44px;
+			left: -13px;
+			width: 84px;
 		}
 
 		.projects-heading h2 {
