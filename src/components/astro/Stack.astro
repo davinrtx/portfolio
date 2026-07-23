@@ -1,6 +1,7 @@
 ---
 import "@fontsource-variable/pixelify-sans";
 import "./StackDisk.css";
+import FrameworkCassette from "../react/FrameworkCassette";
 
 type Language = {
 	name: string;
@@ -25,53 +26,57 @@ const languages: Language[] = [
 			<h2 id="stack-title">Stack</h2>
 		</header>
 
-		<article class="language-disk" aria-labelledby="languages-title">
-			<div class="disk-label">
-				<div class="disk-icon-bay" aria-hidden="true">
-					<div class="document-icon">
-						<span>&lt;/&gt;</span>
+		<div class="stack-cards">
+			<article class="language-disk" aria-labelledby="languages-title">
+				<div class="disk-label">
+					<div class="disk-icon-bay" aria-hidden="true">
+						<div class="document-icon">
+							<span>&lt;/&gt;</span>
+						</div>
+					</div>
+
+					<div class="disk-copy">
+						<p class="group-number">01 /</p>
+						<h3 id="languages-title">Lenguajes</h3>
+						<p>La base de todo.<br />Con esto trabajo en mi día a día.</p>
 					</div>
 				</div>
 
-				<div class="disk-copy">
-					<p class="group-number">01 /</p>
-					<h3 id="languages-title">Lenguajes</h3>
-					<p>La base de todo.<br />Con esto trabajo en mi dia a dia.</p>
-				</div>
-			</div>
-
-			<div class="language-tray">
-				<ul class="language-grid" aria-label="Lenguajes de programación">
-					{
-						languages.map((language) => (
-							<li class="language-chip">
-								<span class="language-icon-slot" aria-hidden="true">
-									{
-										language.icon ? (
-											<img src={language.icon} alt="" loading="lazy" />
-										) : (
-											genericLanguageIcon
-										)
-									}
-								</span>
-								<span>{language.name}</span>
-							</li>
-						))
-					}
-				</ul>
-			</div>
-
-			<div class="disk-bottom" aria-hidden="true">
-				<div class="disk-shutter">
-					<span class="shutter-window"></span>
-					<span class="disk-capacity">1.44 MB</span>
+				<div class="language-tray">
+					<ul class="language-grid" aria-label="Lenguajes de programación">
+						{
+							languages.map((language) => (
+								<li class="language-chip">
+									<span class="language-icon-slot" aria-hidden="true">
+										{
+											language.icon ? (
+												<img src={language.icon} alt="" loading="lazy" />
+											) : (
+												genericLanguageIcon
+											)
+										}
+									</span>
+									<span>{language.name}</span>
+								</li>
+							))
+						}
+					</ul>
 				</div>
 
-				<div class="disk-lock">
-					<span>↓</span>
+				<div class="disk-bottom" aria-hidden="true">
+					<div class="disk-shutter">
+						<span class="shutter-window"></span>
+						<span class="disk-capacity">1.44 MB</span>
+					</div>
+
+					<div class="disk-lock">
+						<span>↓</span>
+					</div>
 				</div>
-			</div>
-		</article>
+			</article>
+
+			<FrameworkCassette client:visible />
+		</div>
 	</div>
 </section>
 
@@ -127,6 +132,21 @@ const languages: Language[] = [
 		line-height: 0.92;
 		text-shadow: 3px 3px 0 rgb(23 53 45 / 10%);
 		text-wrap: balance;
+	}
+
+	.stack-cards {
+		display: grid;
+		margin-top: clamp(30px, 4vw, 54px);
+		align-items: start;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(24px, 3vw, 42px);
+	}
+
+	@media (max-width: 1180px) {
+		.stack-cards {
+			grid-template-columns: minmax(0, 587px);
+			justify-content: center;
+		}
 	}
 
 	@media (max-width: 620px) {
