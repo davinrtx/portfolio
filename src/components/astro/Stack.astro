@@ -2,6 +2,7 @@
 import "@fontsource-variable/pixelify-sans";
 import "./StackDisk.css";
 import FrameworkCassette from "../react/FrameworkCassette";
+import ToolsCabinet from "../react/ToolsCabinet";
 
 type Language = {
 	name: string;
@@ -38,7 +39,7 @@ const languages: Language[] = [
 					<div class="disk-copy">
 						<p class="group-number">01 /</p>
 						<h3 id="languages-title">Lenguajes</h3>
-						<p>La base de todo.<br />Con esto trabajo en mi día a día.</p>
+						<p>La base de todo<br />con lo que trabajo</p>
 					</div>
 				</div>
 
@@ -76,6 +77,10 @@ const languages: Language[] = [
 			</article>
 
 			<FrameworkCassette client:visible />
+
+			<div class="tools-card">
+				<ToolsCabinet client:visible />
+			</div>
 		</div>
 	</div>
 </section>
@@ -142,10 +147,22 @@ const languages: Language[] = [
 		gap: clamp(24px, 3vw, 42px);
 	}
 
+	.tools-card {
+		width: 100%;
+		margin-top: clamp(8px, 1.6vw, 18px);
+		grid-column: 1 / -1;
+	}
+
 	@media (max-width: 1180px) {
 		.stack-cards {
 			grid-template-columns: minmax(0, 587px);
 			justify-content: center;
+		}
+
+		.tools-card {
+			width: min(calc(100vw - clamp(36px, 10vw, 160px)), 900px);
+			grid-column: 1;
+			justify-self: center;
 		}
 	}
 
