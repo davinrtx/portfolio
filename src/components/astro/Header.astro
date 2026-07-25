@@ -379,6 +379,62 @@ import "@fontsource-variable/pixelify-sans";
 	.nav-link .icon-gray { fill: #a8a597; }
 	.nav-link .icon-light { stroke: #e6dcc7; }
 
+	@media (min-width: 1181px) and (max-height: 820px) {
+		.window-bar {
+			height: 29px;
+			padding-block: 2px;
+		}
+
+		.window-bar > img {
+			width: 21px;
+			height: 21px;
+		}
+
+		.window-control {
+			width: 24px;
+			height: 24px;
+		}
+
+		.header-content {
+			min-height: 84px;
+			gap: clamp(20px, 4vw, 64px);
+			padding: 6px clamp(20px, 3.5vw, 60px);
+		}
+
+		.brand {
+			gap: 14px;
+		}
+
+		.brand-icon {
+			width: 70px;
+			height: 70px;
+		}
+
+		.brand-name {
+			font-size: clamp(1.9rem, 2.35vw, 3rem);
+		}
+
+		.brand-tagline {
+			font-size: clamp(0.85rem, 1.05vw, 1.05rem);
+		}
+
+		.main-nav {
+			gap: clamp(6px, 1vw, 18px);
+		}
+
+		.nav-link {
+			min-height: 38px;
+			gap: 8px;
+			padding: 6px 10px;
+			font-size: clamp(1rem, 1.08vw, 1.2rem);
+		}
+
+		.nav-link svg {
+			width: 23px;
+			height: 23px;
+		}
+	}
+
 	@media (max-width: 1180px) {
 		.header-content {
 			flex-direction: column;

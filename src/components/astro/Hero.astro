@@ -297,6 +297,52 @@ import "@fontsource-variable/pixelify-sans";
 		outline-offset: 5px;
 	}
 
+	@media (min-width: 1181px) and (max-height: 820px) {
+		.hero-copy {
+			top: 7%;
+			width: 47%;
+		}
+
+		.hero-copy h1 {
+			font-size: clamp(3.2rem, 4.35vw, 4.75rem);
+		}
+
+		.hero-role {
+			margin-top: clamp(12px, 1.4vw, 20px);
+			font-size: clamp(1.35rem, 1.95vw, 2.05rem);
+		}
+
+		.hero-description {
+			max-width: 580px;
+			margin-top: clamp(14px, 1.4vw, 20px);
+			padding-top: clamp(12px, 1vw, 16px);
+			font-size: clamp(0.875rem, 0.85vw, 0.95rem);
+			line-height: 1.4;
+		}
+
+		.hero-actions {
+			top: 61%;
+			gap: 14px;
+		}
+
+		.hero-button {
+			min-width: clamp(140px, 11.5vw, 180px);
+			height: 54px;
+			gap: 10px;
+			padding: 7px 18px;
+			font-size: clamp(1rem, 1.2vw, 1.25rem);
+		}
+
+		.hero-button--cv {
+			min-width: clamp(90px, 7vw, 105px);
+		}
+
+		.hero-button svg {
+			width: 22px;
+			height: 22px;
+		}
+	}
+
 	@media (max-width: 1180px) {
 		.hero {
 			height: calc(100svh - var(--sticky-header-height, 202px));
