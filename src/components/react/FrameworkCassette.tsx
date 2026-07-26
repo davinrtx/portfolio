@@ -6,20 +6,22 @@ type FrameworkCategory = "Frontend" | "Backend" | "Mobile";
 interface Framework {
 	name: string;
 	category: FrameworkCategory;
+	icon?: string;
 }
 
 const filters: FrameworkCategory[] = ["Frontend", "Backend", "Mobile"];
 const genericFrameworkIcon = "</>";
 
 const frameworks: Framework[] = [
-	{ name: "React", category: "Frontend" },
-	{ name: "Next.js", category: "Frontend" },
-	{ name: "Astro", category: "Frontend" },
-	{ name: "Tailwind", category: "Frontend" },
-	{ name: "Node.js", category: "Backend" },
-	{ name: "Express", category: "Backend" },
-	{ name: "React Native", category: "Mobile" },
-	{ name: "Expo", category: "Mobile" },
+	{ name: "React", category: "Frontend", icon: "/stack_icons/react.svg" },
+	{ name: "Next.js", category: "Frontend", icon: "/stack_icons/nextjs.svg" },
+	{ name: "Astro", category: "Frontend", icon: "/stack_icons/astro.svg" },
+	{ name: "Tailwind", category: "Frontend", icon: "/stack_icons/tailwind.svg" },
+	{ name: "Node.js", category: "Backend", icon: "/stack_icons/node.svg" },
+	{ name: "Express", category: "Backend", icon: "/stack_icons/express.svg" },
+	{ name: "PostgreSQL", category: "Backend", icon: "/stack_icons/postgresql.svg" },
+	{ name: "React Native", category: "Mobile", icon: "/stack_icons/react.svg" },
+	{ name: "Expo", category: "Mobile", icon: "/stack_icons/expo.svg" },
 ];
 
 export default function FrameworkCassette() {
@@ -108,7 +110,11 @@ export default function FrameworkCassette() {
 						{visibleFrameworks.map((framework) => (
 							<li className={styles.frameworkChip} key={framework.name}>
 								<span className={styles.frameworkIcon} aria-hidden="true">
-									{genericFrameworkIcon}
+									{framework.icon ? (
+										<img src={framework.icon} alt="" loading="lazy" />
+									) : (
+										genericFrameworkIcon
+									)}
 								</span>
 								<span>{framework.name}</span>
 							</li>

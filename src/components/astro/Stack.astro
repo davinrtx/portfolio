@@ -6,17 +6,15 @@ import ToolsCabinet from "../react/ToolsCabinet";
 
 type Language = {
 	name: string;
-	icon?: string;
+	icon: string;
 };
 
-const genericLanguageIcon = "</>";
-
 const languages: Language[] = [
-	{ name: "JavaScript" },
-	{ name: "TypeScript" },
-	{ name: "HTML" },
-	{ name: "CSS" },
-	{ name: "SQL" },
+	{ name: "JavaScript", icon: "/stack_icons/javascript.svg" },
+	{ name: "TypeScript", icon: "/stack_icons/typescript.svg" },
+	{ name: "HTML", icon: "/stack_icons/html.svg" },
+	{ name: "CSS", icon: "/stack_icons/css.svg" },
+	{ name: "SQL", icon: "/stack_icons/sql.svg" },
 ];
 ---
 
@@ -49,13 +47,7 @@ const languages: Language[] = [
 							languages.map((language) => (
 								<li class="language-chip">
 									<span class="language-icon-slot" aria-hidden="true">
-										{
-											language.icon ? (
-												<img src={language.icon} alt="" loading="lazy" />
-											) : (
-												genericLanguageIcon
-											)
-										}
+										<img src={language.icon} alt="" loading="lazy" />
 									</span>
 									<span>{language.name}</span>
 								</li>
@@ -143,7 +135,7 @@ const languages: Language[] = [
 		display: grid;
 		margin-top: clamp(30px, 4vw, 54px);
 		align-items: start;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
 		gap: clamp(24px, 3vw, 42px);
 	}
 
@@ -184,7 +176,7 @@ const languages: Language[] = [
 
 	@media (max-width: 1180px) {
 		.stack-cards {
-			grid-template-columns: minmax(0, 587px);
+			grid-template-columns: minmax(0, 616px);
 			justify-content: center;
 		}
 

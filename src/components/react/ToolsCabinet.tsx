@@ -9,12 +9,14 @@ interface Tool {
 const genericToolIcon = "</>";
 
 const tools: Tool[] = [
-	{ name: "Git" },
-	{ name: "GitHub" },
-	{ name: "VS Code" },
-	{ name: "Codex" },
-	{ name: "Vercel" },
-	{ name: "Netlify" },
+	{ name: "Git", icon: "/stack_icons/git.svg" },
+	{ name: "GitHub", icon: "/stack_icons/github.svg" },
+	{ name: "VS Code", icon: "/stack_icons/vscode.svg" },
+	{ name: "Codex", icon: "/stack_icons/codex.svg" },
+	{ name: "NPM", icon: "/stack_icons/npm.svg" },
+	{ name: "Vercel", icon: "/stack_icons/vercel.svg" },
+	{ name: "Netlify", icon: "/stack_icons/netlify.svg" },
+	{ name: "Supabase", icon: "/stack_icons/supabase.svg" },
 ];
 
 export default function ToolsCabinet() {
