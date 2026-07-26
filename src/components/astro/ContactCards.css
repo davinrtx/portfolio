@@ -7,10 +7,10 @@
 }
 
 .contact-card {
-	--card-accent: #16493f;
-	--card-accent-dark: #082c25;
-	--card-accent-light: #317064;
-	--card-tab: #c9b99a;
+	--card-accent: #361649;
+	--card-accent-dark: #1f082c;
+	--card-accent-light: #4e3170;
+	--card-tab: #ada0c7;
 	position: relative;
 	min-width: 0;
 	overflow: visible;
