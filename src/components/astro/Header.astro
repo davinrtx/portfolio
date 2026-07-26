@@ -32,43 +32,27 @@ import "@fontsource-variable/pixelify-sans";
 
 		<nav class="main-nav" aria-label="Navegación principal">
 			<a class="nav-link is-active" href="#inicio" aria-current="page">
-				<svg viewBox="0 0 24 24" aria-hidden="true">
-					<path class="icon-fill icon-red" d="M3 11.2 12 3l9 8.2v9.3H15v-6h-6v6H3z" />
-					<path d="M3 11.2 12 3l9 8.2M5 9.6v10.9h5v-6h4v6h5V9.6M9.3 5.5V3.8H6.8v4" />
-				</svg>
+				<img class="nav-icon" src="/header_icons/inicio.webp" alt="" />
 				<span>Inicio</span>
 			</a>
 
 			<a class="nav-link" href="#proyectos">
-				<svg viewBox="0 0 24 24" aria-hidden="true">
-					<path class="icon-fill icon-yellow" d="M2.5 7h7l2-2h10v14.5h-19z" />
-					<path d="M2.5 8V5h7l2 2h10v12.5h-19V8Zm0 2.5h19" />
-				</svg>
+				<img class="nav-icon" src="/header_icons/proyectos.webp" alt="" />
 				<span>Proyectos</span>
 			</a>
 
 			<a class="nav-link" href="#stack">
-				<svg viewBox="0 0 24 24" aria-hidden="true">
-					<rect class="icon-fill icon-dark" x="2.5" y="3.5" width="19" height="17" rx="1" />
-					<path class="icon-light" d="m6 8 3 3-3 3m5 1h6" />
-				</svg>
-				<span>Stack</span>
+				<img class="nav-icon" src="/header_icons/tecnologias.webp" alt="" />
+				<span>Tecnologías</span>
 			</a>
 
 			<a class="nav-link" href="#sobre-mi">
-				<svg viewBox="0 0 24 24" aria-hidden="true">
-					<circle class="icon-fill icon-skin" cx="12" cy="7" r="4" />
-					<path class="icon-fill icon-blue" d="M5 21v-5.2c0-3 3-5 7-5s7 2 7 5V21z" />
-					<circle cx="12" cy="7" r="4" /><path d="M5 21v-5.2c0-3 3-5 7-5s7 2 7 5V21M9 12l3 4 3-4M12 16v5" />
-				</svg>
+				<img class="nav-icon" src="/header_icons/sobre_mi.webp" alt="" />
 				<span>Sobre mí</span>
 			</a>
 
 			<a class="nav-link" href="#contacto">
-				<svg viewBox="0 0 24 24" aria-hidden="true">
-					<path class="icon-fill icon-gray" d="M2.5 5h19v14h-19z" />
-					<path d="M3 6l9 8 9-8M3 18l6.5-6M21 18l-6.5-6" />
-				</svg>
+				<img class="nav-icon" src="/header_icons/contacto.webp" alt="" />
 				<span>Contacto</span>
 			</a>
 		</nav>
@@ -357,27 +341,14 @@ import "@fontsource-variable/pixelify-sans";
 		box-shadow: inset 0 0 12px rgb(67 52 29 / 9%);
 	}
 
-	.nav-link svg {
+	.nav-icon {
 		width: 27px;
 		height: 27px;
 		flex: 0 0 auto;
-		overflow: visible;
-		fill: none;
-		stroke: #171914;
-		stroke-linecap: square;
-		stroke-linejoin: miter;
-		stroke-width: 1.7;
+		object-fit: contain;
+		image-rendering: pixelated;
 		filter: drop-shadow(1px 1px 0 rgb(255 255 255 / 70%));
 	}
-
-	.nav-link .icon-fill { stroke: #171914; }
-	.nav-link .icon-red { fill: #b94332; }
-	.nav-link .icon-yellow { fill: #f1c33a; }
-	.nav-link .icon-skin { fill: #e2ac7a; }
-	.nav-link .icon-blue { fill: #3275bd; }
-	.nav-link .icon-dark { fill: #1f2420; }
-	.nav-link .icon-gray { fill: #a8a597; }
-	.nav-link .icon-light { stroke: #e6dcc7; }
 
 	@media (min-width: 1181px) and (max-height: 820px) {
 		.window-bar {
@@ -429,7 +400,7 @@ import "@fontsource-variable/pixelify-sans";
 			font-size: clamp(1rem, 1.08vw, 1.2rem);
 		}
 
-		.nav-link svg {
+		.nav-icon {
 			width: 23px;
 			height: 23px;
 		}
@@ -477,7 +448,7 @@ import "@fontsource-variable/pixelify-sans";
 			font-size: 1rem;
 		}
 
-		.nav-link svg { width: 23px; height: 23px; }
+		.nav-icon { width: 23px; height: 23px; }
 	}
 
 	@media (prefers-reduced-motion: reduce) {
