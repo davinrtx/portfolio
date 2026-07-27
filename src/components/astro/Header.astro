@@ -454,27 +454,28 @@ import "@fontsource-variable/pixelify-sans";
 
 	@media (max-width: 700px) {
 		.window-bar { height: 27.9px; }
-		.window-control { width: 20.7px; height: 20.7px; }
+		.window-control { width: 22.5px; height: 22.5px; }
 
 		.header-content {
 			position: relative;
+			min-height: 80px;
 			flex-direction: row;
 			justify-content: space-between;
 			align-items: flex-start;
-			padding: 11.34px 20px 9.72px;
+			padding: 10.2px 20px 8.75px;
 		}
 
 		.brand { gap: 5px; }
-		.brand-icon { width: 50.18px; height: 63.18px; }
+		.brand-icon { width: 45.16px; height: 56.86px; }
 		.brand-name { font-size: clamp(1.55rem, 6.7vw, 2rem); }
 		.brand-tagline { margin-top: 5.67px; font-size: clamp(0.78rem, 3.5vw, 1rem); }
 
 		.menu-toggle {
 			display: inline-flex;
-			min-height: 42px;
+			min-height: 38px;
 			align-items: center;
 			gap: 7px;
-			margin-top: 7px;
+			margin-top: 6px;
 			padding: 6px 9px;
 			border: 3px outset #d8c69f;
 			background: #d5c39e;
@@ -548,8 +549,9 @@ import "@fontsource-variable/pixelify-sans";
 	}
 
 	@media (max-width: 390px) {
+		.header-content { min-height: 93.8px; }
 		.brand { gap: 7px; }
-		.brand-icon { width: 47px; height: 47px; }
+		.brand-icon { width: 42.3px; height: 42.3px; }
 		.brand-name { font-size: 1.3rem; }
 
 		.menu-toggle {

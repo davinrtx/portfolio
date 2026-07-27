@@ -429,82 +429,132 @@ import "@fontsource-variable/pixelify-sans";
 
 	@media (max-width: 780px) {
 		.hero {
-			min-height: 700px;
+			display: flex;
+			height: auto;
+			min-height: max(600px, calc(100svh - var(--sticky-header-height, 104px)));
+			flex-direction: column;
+			padding: clamp(28px, 7vw, 42px) 6vw clamp(30px, 8vw, 48px)
+				clamp(54px, 16vw, 78px);
 		}
 
 		.hero-art {
-			right: auto;
-			bottom: 0;
-			left: 50%;
-			width: 1353px;
-			height: auto;
-			transform: translateX(-45%);
+			display: none;
+		}
+
+		.hero-plants {
+			z-index: 1;
+			left: 19%;
+			height: 100%;
+			transform: translateX(-55%);
 		}
 
 		.hero-copy {
-			top: 6%;
-			left: 7%;
-			width: 86%;
+			position: relative;
+			top: auto;
+			left: auto;
+			width: 100%;
+			max-width: 620px;
+			text-shadow: 1px 1px 0 rgb(23 53 45 / 10%);
 		}
 
 		.hero-profile {
-			width: clamp(104px, 28vw, 128px);
-			margin-bottom: 8px;
+			width: clamp(88px, 25vw, 112px);
+			margin-bottom: clamp(14px, 4vw, 20px);
 		}
 
 		.hero-copy h1 {
-			font-size: clamp(3rem, 11.7vw, 4.8rem);
+			max-width: 11ch;
+			margin-inline: auto;
+			font-size: clamp(2.75rem, 12vw, 4.3rem);
+			letter-spacing: 0;
+			line-height: 0.98;
+			text-align: center;
+			text-wrap: balance;
 		}
 
 		.hero-role {
-			max-width: 620px;
-			font-size: clamp(1.6rem, 6vw, 2.35rem);
+			max-width: 24ch;
+			margin: clamp(16px, 4vw, 22px) auto 0;
+			font-size: clamp(1.25rem, 5.6vw, 1.85rem);
+			line-height: 1.12;
+			text-align: center;
+			text-wrap: balance;
 		}
 
 		.hero-description {
-			display: none;
-		}
-
-		.hero-window--notes {
-			display: none;
+			display: block;
+			width: 100%;
+			max-width: 46ch;
+			margin: clamp(18px, 5vw, 26px) auto 0;
+			padding-top: clamp(14px, 4vw, 20px);
+			padding-left: 2%;
+			font-size: clamp(0.86rem, 2.6vw, 1rem);
+			line-height: 1.5;
+			text-align: left;
+			text-wrap: pretty;
 		}
 
 		.hero-actions {
-			top: 47%;
-			left: 7%;
-			max-width: 86%;
-			flex-wrap: wrap;
+			position: relative;
+			top: auto;
+			left: auto;
+			display: grid;
+			width: 100%;
+			max-width: 560px;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: clamp(10px, 3vw, 14px);
+			margin-top: clamp(28px, 8vw, 46px);
 		}
 
 		.hero-button {
+			width: 100%;
 			height: 52px;
+			min-width: 0;
+			gap: 9px;
+			padding-inline: clamp(10px, 3vw, 18px);
 			font-size: 1.1rem;
+		}
+
+		.hero-button--cv {
+			width: max(112px, calc(50% - 7px));
+			grid-column: 1 / -1;
 		}
 	}
 
 	@media (max-width: 480px) {
 		.hero {
-			min-height: 760px;
+			min-height: max(580px, calc(100svh - var(--sticky-header-height, 104px)));
+			padding-top: 24px;
+			padding-right: 18px;
+			padding-bottom: 30px;
+			padding-left: clamp(48px, 15vw, 62px);
 		}
 
 		.hero-copy h1 {
-			font-size: clamp(2.75rem, 13vw, 3.7rem);
+			font-size: clamp(2.55rem, 12vw, 3.25rem);
 		}
 
 		.hero-role {
-			font-size: clamp(1.35rem, 7vw, 1.9rem);
+			font-size: clamp(1.18rem, 5.8vw, 1.55rem);
+		}
+
+		.hero-description {
+			margin-top: 18px;
+			padding-top: 14px;
+			font-size: clamp(0.84rem, 3.8vw, 0.94rem);
+			line-height: 1.48;
 		}
 
 		.hero-actions {
-			top: 47%;
 			gap: 10px;
+			margin-top: 26px;
 		}
 
 		.hero-button {
 			height: 48px;
 			gap: 8px;
-			padding-inline: 13px;
-			font-size: 1rem;
+			padding-inline: 9px;
+			font-size: clamp(0.9rem, 4vw, 1rem);
 		}
 
 		.hero-button svg {
