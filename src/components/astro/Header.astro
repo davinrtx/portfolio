@@ -30,7 +30,17 @@ import "@fontsource-variable/pixelify-sans";
 			</div>
 		</a>
 
-		<nav class="main-nav" aria-label="Navegación principal">
+		<button
+			class="menu-toggle"
+			type="button"
+			aria-expanded="false"
+			aria-controls="primary-navigation"
+		>
+			<span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+			<span>Menú</span>
+		</button>
+
+		<nav class="main-nav" id="primary-navigation" aria-label="Navegación principal">
 			<a class="nav-link is-active" href="#inicio" aria-current="page">
 				<img class="nav-icon" src="/header_icons/inicio.webp" alt="" />
 				<span>Inicio</span>
@@ -61,8 +71,16 @@ import "@fontsource-variable/pixelify-sans";
 
 <script>
 	const header = document.querySelector<HTMLElement>(".site-header");
+	const menuToggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
+	const mainNav = document.querySelector<HTMLElement>(".main-nav");
 	const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>(".nav-link"));
 	const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+	const mobileNavigation = window.matchMedia("(max-width: 700px)");
+
+	const closeMenu = () => {
+		mainNav?.classList.remove("is-open");
+		menuToggle?.setAttribute("aria-expanded", "false");
+	};
 
 	const setActiveLink = (hash: string) => {
 		navLinks.forEach((link) => {
@@ -132,7 +150,30 @@ import "@fontsource-variable/pixelify-sans";
 			setActiveLink(hash);
 			scrollToHash(hash);
 			history.pushState(null, "", hash);
+			closeMenu();
 		});
+	});
+
+	menuToggle?.addEventListener("click", () => {
+		const isOpen = mainNav?.classList.toggle("is-open") ?? false;
+		menuToggle.setAttribute("aria-expanded", String(isOpen));
+	});
+
+	document.addEventListener("pointerdown", (event) => {
+		if (mainNav?.classList.contains("is-open") && !header?.contains(event.target as Node)) {
+			closeMenu();
+		}
+	});
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape" && mainNav?.classList.contains("is-open")) {
+			closeMenu();
+			menuToggle?.focus();
+		}
+	});
+
+	mobileNavigation.addEventListener("change", (event) => {
+		if (!event.matches) closeMenu();
 	});
 
 	if (window.location.hash) {
@@ -296,6 +337,10 @@ import "@fontsource-variable/pixelify-sans";
 		gap: clamp(8px, 1.5vw, 30px);
 	}
 
+	.menu-toggle {
+		display: none;
+	}
+
 	.nav-link {
 		display: inline-flex;
 		min-height: 43.74px;
@@ -412,24 +457,87 @@ import "@fontsource-variable/pixelify-sans";
 		.window-control { width: 20.7px; height: 20.7px; }
 
 		.header-content {
+			position: relative;
+			flex-direction: row;
+			justify-content: space-between;
 			align-items: flex-start;
-			padding: 11.34px 14px 9.72px;
+			padding: 11.34px 20px 9.72px;
 		}
 
-		.brand { gap: 10px; }
-		.brand-icon { width: 63.18px; height: 63.18px; }
-		.brand-name { font-size: clamp(1.55rem, 7.7vw, 2.4rem); }
+		.brand { gap: 5px; }
+		.brand-icon { width: 50.18px; height: 63.18px; }
+		.brand-name { font-size: clamp(1.55rem, 6.7vw, 2rem); }
 		.brand-tagline { margin-top: 5.67px; font-size: clamp(0.78rem, 3.5vw, 1rem); }
 
+		.menu-toggle {
+			display: inline-flex;
+			min-height: 42px;
+			align-items: center;
+			gap: 7px;
+			margin-top: 7px;
+			padding: 6px 9px;
+			border: 3px outset #d8c69f;
+			background: #d5c39e;
+			box-shadow: 2px 2px 0 #0a1915;
+			color: var(--ink);
+			font: inherit;
+			font-size: 1.05rem;
+			font-weight: 700;
+			line-height: 1;
+			text-transform: uppercase;
+			cursor: pointer;
+		}
+
+		.menu-toggle:hover,
+		.menu-toggle[aria-expanded="true"] {
+			border-style: inset;
+			box-shadow: none;
+			color: #7a301f;
+		}
+
+		.menu-toggle:focus-visible {
+			outline: 3px dashed #7a301f;
+			outline-offset: 3px;
+		}
+
+		.menu-toggle-icon {
+			display: grid;
+			width: 19px;
+			gap: 3px;
+		}
+
+		.menu-toggle-icon i {
+			display: block;
+			height: 3px;
+			background: currentColor;
+			box-shadow: 1px 1px 0 rgb(255 255 255 / 35%);
+		}
+
 		.main-nav {
-			justify-content: flex-start;
-			overflow-x: auto;
-			padding: 5.67px 0 4.05px;
-			scrollbar-color: var(--forest) #cdbc9c;
-			scrollbar-width: thin;
+			display: none;
+			position: absolute;
+			top: calc(100% - 2px);
+			left: 10px;
+			right: 10px;
+			width: auto;
+			z-index: 1;
+			flex-direction: column;
+			gap: 3px;
+			padding: 7px;
+			border: 3px ridge #b8a27d;
+			background-color: var(--paper);
+			background-image:
+				radial-gradient(circle at 15% 30%, rgb(96 72 39 / 7%) 0 1px, transparent 1.5px),
+				radial-gradient(circle at 75% 70%, rgb(255 255 255 / 18%) 0 1px, transparent 1.5px);
+			box-shadow: 4px 4px 0 rgb(10 25 21 / 65%), inset 0 0 16px rgb(82 55 21 / 15%);
+		}
+
+		.main-nav.is-open {
+			display: flex;
 		}
 
 		.nav-link {
+			width: 100%;
 			min-height: 37.26px;
 			gap: 7px;
 			padding: 5.67px 9px;
@@ -437,6 +545,22 @@ import "@fontsource-variable/pixelify-sans";
 		}
 
 		.nav-icon { width: 23px; height: 23px; }
+	}
+
+	@media (max-width: 390px) {
+		.brand { gap: 7px; }
+		.brand-icon { width: 47px; height: 47px; }
+		.brand-name { font-size: 1.3rem; }
+
+		.menu-toggle {
+			min-height: 38px;
+			gap: 5px;
+			margin-top: 4px;
+			padding: 5px 7px;
+			font-size: 0.9rem;
+		}
+
+		.menu-toggle-icon { width: 16px; }
 	}
 
 	@media (prefers-reduced-motion: reduce) {

@@ -120,9 +120,9 @@
 
 .description-body {
 	display: grid;
-	min-height: 235px;
+	min-height: 270px;
 	align-items: center;
-	grid-template-columns: minmax(175px, 0.68fr) minmax(0, 1.55fr);
+	grid-template-columns: minmax(230px, 0.95fr) minmax(0, 1.45fr);
 	gap: clamp(18px, 3vw, 36px);
 	padding: clamp(16px, 2vw, 24px) clamp(20px, 3vw, 38px) 16px;
 	background-color: #f1e5cf;
@@ -150,28 +150,31 @@
 	z-index: 0;
 	display: grid;
 	margin: 0;
+	isolation: isolate;
 	place-items: end center;
 }
 
 .character::after {
 	position: absolute;
-	z-index: -1;
-	right: 7%;
-	bottom: 1px;
-	width: 68%;
-	height: 18px;
+	z-index: 0;
+	left: 22%;
+	bottom: 4%;
+	width: 72%;
+	height: 9%;
 	border-radius: 50%;
-	background: rgb(38 31 20 / 28%);
-	filter: blur(5px);
+	background: rgb(38 31 20 / 24%);
+	filter: blur(7px);
 	content: "";
-	transform: translate(8px, 7px);
+	transform: translateY(10px);
 }
 
 .character img {
+	position: relative;
+	z-index: 1;
 	display: block;
-	width: clamp(145px, 16vw, 185px);
+	width: clamp(210px, 24vw, 285px);
 	height: auto;
-	filter: drop-shadow(8px 9px 4px rgb(48 38 24 / 24%));
+	filter: drop-shadow(7px 8px 4px rgb(48 38 24 / 18%));
 }
 
 .window-status {
@@ -207,13 +210,13 @@
 
 @media (max-width: 860px) {
 	.description-body {
-		grid-template-columns: minmax(150px, 0.58fr) minmax(0, 1.35fr);
+		grid-template-columns: minmax(190px, 0.82fr) minmax(0, 1.35fr);
 		gap: 18px;
 		padding-inline: 20px;
 	}
 
 	.character img {
-		width: clamp(145px, 24vw, 175px);
+		width: clamp(190px, 27vw, 240px);
 	}
 }
 
@@ -256,7 +259,7 @@
 	}
 
 	.character img {
-		width: min(40vw, 160px);
+		width: min(68vw, 270px);
 	}
 
 	.description-body p {
