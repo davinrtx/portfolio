@@ -659,11 +659,12 @@
 	}
 
 	.toolGrid {
-		gap: 21px;
+		gap: 21px 12px;
 	}
 
 	.toolCard {
-		width: min(100%, 204px);
+		width: calc(50% - 6px);
+		min-width: 0;
 		max-width: 204px;
 	}
 
@@ -672,7 +673,7 @@
 	}
 
 	.toolIcon {
-		width: 51px;
+		width: clamp(43px, 14vw, 51px);
 	}
 
 	.toolName {
@@ -695,6 +696,26 @@
 
 	.drawerHandle {
 		display: none;
+	}
+}
+
+@media (max-width: 780px) {
+	.crownIcon,
+	.toolIcon,
+	.drawer p {
+		-webkit-text-stroke: 0.12px currentColor;
+	}
+
+	.crownIcon {
+		font-weight: 800;
+	}
+
+	.toolIcon {
+		font-weight: 900;
+	}
+
+	.drawer p {
+		font-weight: 700;
 	}
 }
 

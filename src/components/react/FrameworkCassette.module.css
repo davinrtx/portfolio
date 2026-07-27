@@ -773,6 +773,30 @@
 	}
 }
 
+@media (max-width: 780px) {
+	.terminalIcon span,
+	.labelCopy > p,
+	.sideLabel span,
+	.tapeScale,
+	.frameworkIcon {
+		-webkit-text-stroke: 0.12px currentColor;
+	}
+
+	.terminalIcon span {
+		font-weight: 800;
+	}
+
+	.labelCopy > p,
+	.sideLabel span,
+	.tapeScale {
+		font-weight: 500;
+	}
+
+	.frameworkIcon {
+		font-weight: 900;
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.cassette:hover .reelCore,
 	.activeFilter .buttonLight,

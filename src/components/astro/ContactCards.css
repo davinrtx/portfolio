@@ -324,6 +324,18 @@
 	}
 }
 
+@media (max-width: 780px) {
+	.contact-card::before,
+	.contact-card__body > p,
+	.contact-card__arrow {
+		-webkit-text-stroke: 0.12px currentColor;
+	}
+
+	.contact-card__body > p {
+		font-weight: 500;
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.contact-card__action {
 		transition: none;

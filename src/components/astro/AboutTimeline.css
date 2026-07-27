@@ -305,4 +305,20 @@
 		padding-inline: 11px;
 		font-size: 0.74rem;
 	}
+	
+}
+
+@media (max-width: 780px) {
+	.date-stamp,
+	.entry-description {
+		-webkit-text-stroke: 0.12px currentColor;
+	}
+
+	.date-stamp {
+		font-weight: 500;
+	}
+
+	.entry-description {
+		font-weight: 500;
+	}
 }
