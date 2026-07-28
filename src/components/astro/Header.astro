@@ -76,6 +76,8 @@ import "@fontsource-variable/pixelify-sans";
 	const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>(".nav-link"));
 	const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 	const mobileNavigation = window.matchMedia("(max-width: 700px)");
+	let pendingScrollTarget: { hash: string; top: number } | undefined;
+	let scrollEndFallback: number | undefined;
 
 	const closeMenu = () => {
 		mainNav?.classList.remove("is-open");
@@ -116,19 +118,42 @@ import "@fontsource-variable/pixelify-sans";
 		setActiveLink(activeHash);
 	};
 
-	const scrollToHash = (hash: string) => {
-		if (hash === "#inicio") {
-			window.scrollTo({ top: 0, behavior: reducedMotion.matches ? "auto" : "smooth" });
-			return;
+	const finishPendingScroll = () => {
+		if (!pendingScrollTarget) return;
+
+		pendingScrollTarget = undefined;
+		if (scrollEndFallback) {
+			window.clearTimeout(scrollEndFallback);
+			scrollEndFallback = undefined;
 		}
+		updateActiveLinkFromScroll();
+	};
 
-		const target = document.querySelector<HTMLElement>(hash);
+	const scheduleScrollEndFallback = () => {
+		if (!pendingScrollTarget) return;
 
-		if (!target) return;
+		if (scrollEndFallback) window.clearTimeout(scrollEndFallback);
+		scrollEndFallback = window.setTimeout(finishPendingScroll, 250);
+	};
+
+	const scrollToHash = (hash: string) => {
+		const target = hash === "#inicio" ? undefined : document.querySelector<HTMLElement>(hash);
+		if (hash !== "#inicio" && !target) return;
+
+		const top = target
+			? Math.max(0, window.scrollY + target.getBoundingClientRect().top - getHeaderHeight() - 3)
+			: 0;
+		pendingScrollTarget = { hash, top };
 
 		window.scrollTo({
-			top: Math.max(0, window.scrollY + target.getBoundingClientRect().top - getHeaderHeight() - 3),
+			top,
 			behavior: reducedMotion.matches ? "auto" : "smooth",
+		});
+
+		window.requestAnimationFrame(() => {
+			if (pendingScrollTarget && Math.abs(window.scrollY - pendingScrollTarget.top) <= 2) {
+				finishPendingScroll();
+			}
 		});
 	};
 
@@ -136,7 +161,7 @@ import "@fontsource-variable/pixelify-sans";
 		updateHeaderOffset();
 		new ResizeObserver(() => {
 			updateHeaderOffset();
-			updateActiveLinkFromScroll();
+			if (!pendingScrollTarget) updateActiveLinkFromScroll();
 		}).observe(header);
 	}
 
@@ -190,15 +215,24 @@ import "@fontsource-variable/pixelify-sans";
 	window.addEventListener(
 		"scroll",
 		() => {
+			scheduleScrollEndFallback();
 			if (scrollAnimationFrame) return;
 
 			scrollAnimationFrame = window.requestAnimationFrame(() => {
-				updateActiveLinkFromScroll();
+				if (pendingScrollTarget) {
+					if (Math.abs(window.scrollY - pendingScrollTarget.top) <= 2) {
+						finishPendingScroll();
+					}
+				} else {
+					updateActiveLinkFromScroll();
+				}
 				scrollAnimationFrame = undefined;
 			});
 		},
 		{ passive: true },
 	);
+
+	window.addEventListener("scrollend", finishPendingScroll, { passive: true });
 
 	updateActiveLinkFromScroll();
 </script>
