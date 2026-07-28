@@ -1,43 +1,30 @@
-# Astro Starter Kit: Minimal
+# Portfolio de Damian Aceves
 
-```sh
-npm create astro@latest -- --template minimal
-```
+¡Hola! Este es mi portafolio como desarrollador. Aquí comparto una parte de mi trabajo, las tecnologías con las que disfruto crear y un poco de mi recorrido como Ingeniero en Sistemas Computacionales.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Me gusta transformar ideas en experiencias digitales claras, funcionales y atractivas. Para este sitio elegí una estética inspirada en el software de escritorio retro, porque también creo que los detalles hacen que una interfaz se sienta más cercana y memorable.
 
-## 🚀 Project Structure
+## Lo que encontrarás
 
-Inside of your Astro project, you'll see the following folders and files:
+- Proyectos web y móviles en los que he trabajado.
+- Las tecnologías, frameworks y herramientas que forman parte de mi día a día.
+- Mi experiencia, formación y forma de entender el desarrollo de software.
+- Enlaces para contactarme, conocer mi perfil de GitHub y descargar mi CV.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Desarrollado con
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Este portafolio fue desarrollado con:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- [Astro](https://astro.build/) y [React](https://react.dev/) para la experiencia y los componentes interactivos.
+- [Tailwind CSS](https://tailwindcss.com/), CSS Modules y CSS nativo para los estilos.
+- TypeScript para mantener el código más claro y confiable.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Contacto
 
-## 🧞 Commands
+- GitHub: [@Damianx64](https://github.com/Damianx64)
+- Correo: [aceves.x64@gmail.com](mailto:aceves.x64@gmail.com)
+- LinkedIn: [Damian Alexander Aceves Navarrete](https://www.linkedin.com/search/results/people/?keywords=Damian%20Alexander%20Aceves%20Navarrete)
 
-All commands are run from the root of the project, from a terminal:
+## Licencia
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Este repositorio se utiliza como portafolio personal. Todos los derechos reservados.
