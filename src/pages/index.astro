@@ -13,6 +13,13 @@ import "../styles/global.css";
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="/windows.webp" />
+		<link
+			rel="preload"
+			as="image"
+			href="/images/escritorio_hero.webp"
+			media="(min-width: 781px)"
+			fetchpriority="high"
+		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content="Portfolio de Damian Aceves, desarrollador de software." />
@@ -61,6 +68,27 @@ import "../styles/global.css";
 				);
 
 				revealTargets.forEach((element) => observer.observe(element));
+			}
+
+			const animatedSections = Array.from(
+				document.querySelectorAll<HTMLElement>("[data-animated-section]"),
+			);
+
+			if (reducedMotion.matches || !("IntersectionObserver" in window)) {
+				animatedSections.forEach((section) =>
+					section.setAttribute("data-section-visible", ""),
+				);
+			} else {
+				const animationObserver = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							entry.target.toggleAttribute("data-section-visible", entry.isIntersecting);
+						});
+					},
+					{ rootMargin: "250px 0px", threshold: 0 },
+				);
+
+				animatedSections.forEach((section) => animationObserver.observe(section));
 			}
 		</script>
 	</body>

@@ -1,8 +1,8 @@
 ---
 import "@fontsource-variable/pixelify-sans";
 import "./StackDisk.css";
-import FrameworkCassette from "../react/FrameworkCassette";
-import ToolsCabinet from "../react/ToolsCabinet";
+import FrameworkCassette from "./FrameworkCassette.astro";
+import ToolsCabinet from "./ToolsCabinet.astro";
 
 type Language = {
 	name: string;
@@ -18,7 +18,12 @@ const languages: Language[] = [
 ];
 ---
 
-<section class="stack" id="stack" aria-labelledby="stack-title">
+<section
+	class="stack render-deferred"
+	id="stack"
+	aria-labelledby="stack-title"
+	data-animated-section
+>
 	<div class="stack-shell">
 		<header class="stack-heading" data-reveal>
 			<p class="stack-eyebrow">STACK.EXE</p>
@@ -69,11 +74,11 @@ const languages: Language[] = [
 			</article>
 
 			<div data-reveal style="--reveal-delay: 140ms">
-				<FrameworkCassette client:visible />
+				<FrameworkCassette />
 			</div>
 
 			<div class="tools-card" data-reveal style="--reveal-delay: 100ms">
-				<ToolsCabinet client:visible />
+				<ToolsCabinet />
 			</div>
 		</div>
 	</div>

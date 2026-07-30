@@ -42,27 +42,57 @@ import "@fontsource-variable/pixelify-sans";
 
 		<nav class="main-nav" id="primary-navigation" aria-label="Navegación principal">
 			<a class="nav-link is-active" href="#inicio" aria-current="page">
-				<img class="nav-icon" src="/header_icons/inicio.webp" alt="" />
+				<img
+					class="nav-icon"
+					src="/header_icons/inicio.webp"
+					alt=""
+					loading="lazy"
+					decoding="async"
+				/>
 				<span>Inicio</span>
 			</a>
 
 			<a class="nav-link" href="#proyectos">
-				<img class="nav-icon" src="/header_icons/proyectos.webp" alt="" />
+				<img
+					class="nav-icon"
+					src="/header_icons/proyectos.webp"
+					alt=""
+					loading="lazy"
+					decoding="async"
+				/>
 				<span>Proyectos</span>
 			</a>
 
 			<a class="nav-link" href="#stack">
-				<img class="nav-icon" src="/header_icons/tecnologias.webp" alt="" />
+				<img
+					class="nav-icon"
+					src="/header_icons/tecnologias.webp"
+					alt=""
+					loading="lazy"
+					decoding="async"
+				/>
 				<span>Tecnologías</span>
 			</a>
 
 			<a class="nav-link" href="#sobre-mi">
-				<img class="nav-icon" src="/header_icons/sobre_mi.webp" alt="" />
+				<img
+					class="nav-icon"
+					src="/header_icons/sobre_mi.webp"
+					alt=""
+					loading="lazy"
+					decoding="async"
+				/>
 				<span>Sobre mí</span>
 			</a>
 
 			<a class="nav-link" href="#contacto">
-				<img class="nav-icon" src="/header_icons/contacto.webp" alt="" />
+				<img
+					class="nav-icon"
+					src="/header_icons/contacto.webp"
+					alt=""
+					loading="lazy"
+					decoding="async"
+				/>
 				<span>Contacto</span>
 			</a>
 		</nav>
@@ -76,8 +106,30 @@ import "@fontsource-variable/pixelify-sans";
 	const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>(".nav-link"));
 	const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 	const mobileNavigation = window.matchMedia("(max-width: 700px)");
+	const supportsSectionObserver = "IntersectionObserver" in window;
+	const navigationTargets = navLinks
+		.map((link) => ({
+			hash: link.hash,
+			target:
+				link.hash === "#inicio"
+					? document.querySelector<HTMLElement>(".hero")
+					: document.querySelector<HTMLElement>(link.hash),
+		}))
+		.filter(
+			(entry): entry is { hash: string; target: HTMLElement } => entry.target !== null,
+		);
+	const hashByTarget = new Map<Element, string>(
+		navigationTargets.map(({ hash, target }) => [target, hash]),
+	);
+	const visibleSections = new Set<string>();
 	let pendingScrollTarget: { hash: string; top: number } | undefined;
 	let scrollEndFallback: number | undefined;
+	let pendingScrollFrame: number | undefined;
+	let fallbackScrollFrame: number | undefined;
+	let sectionObserver: IntersectionObserver | undefined;
+	let headerHeight = 0;
+	let observerViewportHeight = 0;
+	let currentActiveHash = "#inicio";
 
 	const closeMenu = () => {
 		mainNav?.classList.remove("is-open");
@@ -85,6 +137,8 @@ import "@fontsource-variable/pixelify-sans";
 	};
 
 	const setActiveLink = (hash: string) => {
+		currentActiveHash = hash;
+
 		navLinks.forEach((link) => {
 			const isActive = link.hash === hash;
 			link.classList.toggle("is-active", isActive);
@@ -97,25 +151,85 @@ import "@fontsource-variable/pixelify-sans";
 		});
 	};
 
-	const getHeaderHeight = () => header?.getBoundingClientRect().height ?? 0;
+	const updateActiveFromVisibleSections = () => {
+		if (pendingScrollTarget) return;
 
-	const updateHeaderOffset = () => {
-		document.documentElement.style.setProperty("--sticky-header-height", `${getHeaderHeight()}px`);
+		let activeHash = currentActiveHash;
+		navigationTargets.forEach(({ hash }) => {
+			if (visibleSections.has(hash)) activeHash = hash;
+		});
+		setActiveLink(activeHash);
 	};
 
-	const updateActiveLinkFromScroll = () => {
-		const scrollMarker = window.scrollY + getHeaderHeight() + 16;
+	const updateActiveLinkFallback = () => {
+		if (pendingScrollTarget) return;
+
+		const scrollMarker = window.scrollY + headerHeight + 16;
 		let activeHash = "#inicio";
 
-		navLinks.forEach((link) => {
-			const target = document.querySelector<HTMLElement>(link.hash);
-
-			if (target && window.scrollY + target.getBoundingClientRect().top <= scrollMarker) {
-				activeHash = link.hash;
+		navigationTargets.forEach(({ hash, target }) => {
+			if (window.scrollY + target.getBoundingClientRect().top <= scrollMarker) {
+				activeHash = hash;
 			}
 		});
 
 		setActiveLink(activeHash);
+	};
+
+	const refreshSectionObserver = () => {
+		if (!supportsSectionObserver) return;
+
+		const availableHeight = Math.max(1, window.innerHeight - headerHeight - 1);
+		const observerBandHeight = Math.min(
+			availableHeight,
+			Math.max(64, window.innerHeight * 0.35),
+		);
+		const bottomMargin = Math.max(
+			0,
+			window.innerHeight - headerHeight - observerBandHeight,
+		);
+
+		sectionObserver?.disconnect();
+		visibleSections.clear();
+		sectionObserver = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					const hash = hashByTarget.get(entry.target);
+					if (!hash) return;
+
+					if (entry.isIntersecting) {
+						visibleSections.add(hash);
+					} else {
+						visibleSections.delete(hash);
+					}
+				});
+				updateActiveFromVisibleSections();
+			},
+			{
+				rootMargin: `-${Math.ceil(headerHeight + 1)}px 0px -${Math.ceil(bottomMargin)}px 0px`,
+				threshold: 0,
+			},
+		);
+
+		navigationTargets.forEach(({ target }) => sectionObserver?.observe(target));
+	};
+
+	const updateHeaderOffset = () => {
+		const nextHeaderHeight = header?.offsetHeight ?? 0;
+		const nextViewportHeight = window.innerHeight;
+		document.documentElement.style.setProperty(
+			"--sticky-header-height",
+			`${nextHeaderHeight}px`,
+		);
+
+		if (
+			nextHeaderHeight !== headerHeight ||
+			nextViewportHeight !== observerViewportHeight
+		) {
+			headerHeight = nextHeaderHeight;
+			observerViewportHeight = nextViewportHeight;
+			refreshSectionObserver();
+		}
 	};
 
 	const finishPendingScroll = () => {
@@ -126,7 +240,8 @@ import "@fontsource-variable/pixelify-sans";
 			window.clearTimeout(scrollEndFallback);
 			scrollEndFallback = undefined;
 		}
-		updateActiveLinkFromScroll();
+
+		updateActiveLinkFallback();
 	};
 
 	const scheduleScrollEndFallback = () => {
@@ -141,7 +256,7 @@ import "@fontsource-variable/pixelify-sans";
 		if (hash !== "#inicio" && !target) return;
 
 		const top = target
-			? Math.max(0, window.scrollY + target.getBoundingClientRect().top - getHeaderHeight() - 3)
+			? Math.max(0, window.scrollY + target.getBoundingClientRect().top - headerHeight - 3)
 			: 0;
 		pendingScrollTarget = { hash, top };
 
@@ -159,16 +274,17 @@ import "@fontsource-variable/pixelify-sans";
 
 	if (header) {
 		updateHeaderOffset();
-		new ResizeObserver(() => {
-			updateHeaderOffset();
-			if (!pendingScrollTarget) updateActiveLinkFromScroll();
-		}).observe(header);
+		if ("ResizeObserver" in window) {
+			new ResizeObserver(updateHeaderOffset).observe(header);
+		}
+		window.addEventListener("resize", updateHeaderOffset, { passive: true });
+	} else {
+		refreshSectionObserver();
 	}
 
 	document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
 		link.addEventListener("click", (event) => {
 			const hash = link.hash;
-
 			if (!hash) return;
 
 			event.preventDefault();
@@ -201,40 +317,50 @@ import "@fontsource-variable/pixelify-sans";
 		if (!event.matches) closeMenu();
 	});
 
-	if (window.location.hash) {
-		setActiveLink(window.location.hash);
-	}
+	if (window.location.hash) setActiveLink(window.location.hash);
 
 	window.addEventListener("hashchange", () => {
-		if (window.location.hash) {
-			setActiveLink(window.location.hash);
-		}
+		if (window.location.hash) setActiveLink(window.location.hash);
 	});
 
-	let scrollAnimationFrame: number | undefined;
 	window.addEventListener(
 		"scroll",
 		() => {
-			scheduleScrollEndFallback();
-			if (scrollAnimationFrame) return;
+			if (!pendingScrollTarget) return;
 
-			scrollAnimationFrame = window.requestAnimationFrame(() => {
-				if (pendingScrollTarget) {
-					if (Math.abs(window.scrollY - pendingScrollTarget.top) <= 2) {
-						finishPendingScroll();
-					}
-				} else {
-					updateActiveLinkFromScroll();
+			scheduleScrollEndFallback();
+			if (pendingScrollFrame) return;
+
+			pendingScrollFrame = window.requestAnimationFrame(() => {
+				if (
+					pendingScrollTarget &&
+					Math.abs(window.scrollY - pendingScrollTarget.top) <= 2
+				) {
+					finishPendingScroll();
 				}
-				scrollAnimationFrame = undefined;
+				pendingScrollFrame = undefined;
 			});
 		},
 		{ passive: true },
 	);
 
-	window.addEventListener("scrollend", finishPendingScroll, { passive: true });
+	if (!supportsSectionObserver) {
+		window.addEventListener(
+			"scroll",
+			() => {
+				if (pendingScrollTarget || fallbackScrollFrame) return;
 
-	updateActiveLinkFromScroll();
+				fallbackScrollFrame = window.requestAnimationFrame(() => {
+					updateActiveLinkFallback();
+					fallbackScrollFrame = undefined;
+				});
+			},
+			{ passive: true },
+		);
+		updateActiveLinkFallback();
+	}
+
+	window.addEventListener("scrollend", finishPendingScroll, { passive: true });
 </script>
 
 <style>

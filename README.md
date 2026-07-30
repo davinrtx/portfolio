@@ -15,8 +15,8 @@ Me gusta transformar ideas en experiencias digitales claras, funcionales y atrac
 
 Este portafolio fue desarrollado con:
 
-- [Astro](https://astro.build/) y [React](https://react.dev/) para la experiencia y los componentes interactivos.
-- [Tailwind CSS](https://tailwindcss.com/), CSS Modules y CSS nativo para los estilos.
+- [Astro](https://astro.build/) para la estructura y los componentes interactivos.
+- CSS Modules y CSS nativo para conservar una interfaz ligera y personalizada.
 - TypeScript para mantener el código más claro y confiable.
 
 ## Contacto

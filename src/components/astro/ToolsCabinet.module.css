@@ -242,7 +242,6 @@
 	max-width: 224px;
 	padding-top: 13px;
 	transform-origin: 50% 6px;
-	will-change: transform;
 }
 
 .toolCard::before {
@@ -357,12 +356,13 @@
 	text-shadow: 1px 2px 0 rgb(89 65 34 / 13%);
 }
 
-.toolCard.swinging {
+.toolCard[data-swinging] {
 	z-index: 4;
 	animation: hangingCard 760ms cubic-bezier(0.37, 0, 0.22, 1) both;
+	will-change: transform;
 }
 
-.toolCard.swinging .toolLabel {
+.toolCard[data-swinging] .toolLabel {
 	filter: brightness(1.025);
 }
 
@@ -720,7 +720,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.toolCard.swinging {
+	.toolCard[data-swinging] {
 		animation: none;
 	}
 }

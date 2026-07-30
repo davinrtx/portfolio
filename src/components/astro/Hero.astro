@@ -5,30 +5,11 @@ import "@fontsource-variable/pixelify-sans";
 <section class="hero" aria-labelledby="hero-title">
 	<div class="hero-art" aria-hidden="true" data-reveal="hero" style="--reveal-delay: 80ms">
 		<div class="hero-windows">
-			<img
-				class="hero-window hero-window--notes"
-				src="/images/notas_txt.webp"
-				alt=""
-				width="1174"
-				height="795"
-			/>
-			<img
-				class="hero-window hero-window--landscape"
-				src="/images/tren.webp"
-				alt=""
-				width="1359"
-				height="1013"
-			/>
+			<span class="hero-window hero-window--notes"></span>
+			<span class="hero-window hero-window--landscape"></span>
 		</div>
 
-		<img
-			class="hero-scene"
-			src="/images/escritorio_hero.webp"
-			alt=""
-			width="1665"
-			height="899"
-			fetchpriority="high"
-		/>
+		<span class="hero-scene"></span>
 	</div>
 
 	<img
@@ -146,6 +127,9 @@ import "@fontsource-variable/pixelify-sans";
 		display: block;
 		width: 100%;
 		height: 100%;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
 		filter: drop-shadow(-3px 2px 3px rgb(31 43 18 / 30%));
 		-webkit-mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 100%);
 		mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 100%);
@@ -162,6 +146,9 @@ import "@fontsource-variable/pixelify-sans";
 		position: absolute;
 		display: block;
 		height: auto;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
 		filter: drop-shadow(4px 5px 2px rgb(45 34 18 / 28%));
 		user-select: none;
 	}
@@ -170,12 +157,28 @@ import "@fontsource-variable/pixelify-sans";
 		top: 2%;
 		right: 20%;
 		width: 15.25%;
+		aspect-ratio: 1174 / 795;
 	}
 
 	.hero-window--landscape {
 		top: 4.5%;
 		left: 36.5%;
 		width: 22.25%;
+		aspect-ratio: 1359 / 1013;
+	}
+
+	@media (min-width: 781px) {
+		.hero-scene {
+			background-image: url("/images/escritorio_hero.webp");
+		}
+
+		.hero-window--notes {
+			background-image: url("/images/notas_txt.webp");
+		}
+
+		.hero-window--landscape {
+			background-image: url("/images/tren.webp");
+		}
 	}
 
 	.hero-plants {

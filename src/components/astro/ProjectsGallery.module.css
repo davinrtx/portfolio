@@ -47,14 +47,14 @@
 	outline-offset: 4px;
 }
 
-.activeFilter {
+.filterButton[aria-pressed="true"] {
 	border-color: #719284;
 	background: var(--forest);
 	box-shadow: 3px 4px 0 rgb(35 39 28 / 43%), inset 0 0 0 2px #9daf93;
 	color: #f0e8d6;
 }
 
-.activeFilter:hover {
+.filterButton[aria-pressed="true"]:hover {
 	box-shadow: 3px 6px 0 rgb(35 39 28 / 38%), inset 0 0 0 2px #9daf93;
 }
 
@@ -69,7 +69,7 @@
 	transition: width 120ms steps(2, end), opacity 120ms ease, transform 120ms steps(2, end);
 }
 
-.activeFilter .filterCursor {
+.filterButton[aria-pressed="true"] .filterCursor {
 	width: 0.9em;
 	opacity: 1;
 	transform: translateX(0);
