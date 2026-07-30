@@ -19,6 +19,23 @@ Este portafolio fue desarrollado con:
 - CSS Modules y CSS nativo para conservar una interfaz ligera y personalizada.
 - TypeScript para mantener el código más claro y confiable.
 
+## Estructura del proyecto
+
+```text
+Portfolio/
+├── public/                         # Imágenes, iconos, favicon y CV
+├── src/
+│   ├── components/
+│   │   ├── astro/                  # Secciones principales de la página
+│   │   ├── ui/                     # Componentes usados dentro de las secciones
+│   │   └── styles/                 # Bloques visuales construidos únicamente con CSS
+│   ├── layouts/                    # Layouts compartidos
+│   ├── pages/                      # Rutas del sitio
+│   │   └── index.astro
+│   └── styles/
+│       └── global.css              # Estilos globales
+```
+
 ## Contacto
 
 - GitHub: [@Damianx64](https://github.com/Damianx64)

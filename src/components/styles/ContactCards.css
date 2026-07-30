@@ -1,3 +1,4 @@
+/* Bloque visual de tarjetas usado por la sección Contacto. */
 .contact-grid {
 	display: grid;
 	margin-top: clamp(34px, 4.4vw, 58px);
