@@ -3,7 +3,7 @@ import "@fontsource-variable/pixelify-sans";
 ---
 
 <section class="hero" aria-labelledby="hero-title">
-	<div class="hero-art" aria-hidden="true">
+	<div class="hero-art" aria-hidden="true" data-reveal="hero" style="--reveal-delay: 80ms">
 		<div class="hero-windows">
 			<img
 				class="hero-window hero-window--notes"
@@ -38,9 +38,11 @@ import "@fontsource-variable/pixelify-sans";
 		width="495"
 		height="2145"
 		aria-hidden="true"
+		data-reveal="hero"
+		style="--reveal-delay: 140ms"
 	/>
 
-	<div class="hero-copy">
+	<div class="hero-copy" data-reveal="hero" style="--reveal-delay: 210ms">
 		<img
 			class="hero-profile"
 			src="/images/foto_perfil.webp"
@@ -57,7 +59,7 @@ import "@fontsource-variable/pixelify-sans";
 		</p>
 	</div>
 
-	<div class="hero-actions" role="group" aria-label="Acciones principales">
+	<div class="hero-actions" role="group" aria-label="Acciones principales" data-reveal="hero" style="--reveal-delay: 340ms">
 		<a class="hero-button hero-button--primary" href="#proyectos">
 			<svg viewBox="0 0 24 24" aria-hidden="true">
 				<path d="M8 5v14l11-7z" />

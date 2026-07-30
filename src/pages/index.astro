@@ -17,6 +17,9 @@ import "../styles/global.css";
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content="Portfolio de Damian Aceves, desarrollador de software." />
 		<title>Damian Aceves | Portfolio</title>
+		<script is:inline>
+			document.documentElement.classList.add("js");
+		</script>
 	</head>
 	<body>
 		<Header />
@@ -28,5 +31,37 @@ import "../styles/global.css";
 			<Contact />
 		</main>
 		<Footer />
+
+		<script>
+			const revealTargets = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+			const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+			const reveal = (element: HTMLElement) => {
+				element.dataset.revealed = "";
+			};
+
+			if (reducedMotion.matches || !("IntersectionObserver" in window)) {
+				revealTargets.forEach(reveal);
+			} else {
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (!entry.isIntersecting) return;
+
+							reveal(entry.target as HTMLElement);
+							observer.unobserve(entry.target);
+						});
+					},
+					{
+						// Empieza antes de que el elemento alcance el borde inferior,
+						// para que la entrada acompañe el desplazamiento del usuario.
+						rootMargin: "0px 0px -15% 0px",
+						threshold: 0.08,
+					},
+				);
+
+				revealTargets.forEach((element) => observer.observe(element));
+			}
+		</script>
 	</body>
 </html>

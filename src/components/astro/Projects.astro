@@ -13,13 +13,15 @@ import ProjectsGallery from "../react/ProjectsGallery";
 	/>
 
 	<div class="projects-shell">
-		<header class="projects-heading">
+		<header class="projects-heading" data-reveal>
 			<p class="projects-eyebrow">PORTFOLIO.EXE</p>
 			<h2 id="projects-title">Proyectos</h2>
 				
 		</header>
 
-		<ProjectsGallery client:visible />
+		<div data-reveal style="--reveal-delay: 100ms">
+			<ProjectsGallery client:visible />
+		</div>
 	</div>
 </section>
 

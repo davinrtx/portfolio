@@ -20,13 +20,13 @@ const languages: Language[] = [
 
 <section class="stack" id="stack" aria-labelledby="stack-title">
 	<div class="stack-shell">
-		<header class="stack-heading">
+		<header class="stack-heading" data-reveal>
 			<p class="stack-eyebrow">STACK.EXE</p>
 			<h2 id="stack-title">Tecnologías</h2>
 		</header>
 
 		<div class="stack-cards">
-			<article class="language-disk" aria-labelledby="languages-title">
+			<article class="language-disk" aria-labelledby="languages-title" data-reveal style="--reveal-delay: 70ms">
 				<div class="disk-label">
 					<div class="disk-icon-bay" aria-hidden="true">
 						<div class="document-icon">
@@ -68,9 +68,11 @@ const languages: Language[] = [
 				</div>
 			</article>
 
-			<FrameworkCassette client:visible />
+			<div data-reveal style="--reveal-delay: 140ms">
+				<FrameworkCassette client:visible />
+			</div>
 
-			<div class="tools-card">
+			<div class="tools-card" data-reveal style="--reveal-delay: 100ms">
 				<ToolsCabinet client:visible />
 			</div>
 		</div>

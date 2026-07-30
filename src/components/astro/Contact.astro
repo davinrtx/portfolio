@@ -52,17 +52,19 @@ const contactCards: ContactCard[] = [
 
 <section class="contact" id="contacto" aria-labelledby="contact-title">
 	<div class="contact-shell">
-		<header class="contact-heading">
+		<header class="contact-heading" data-reveal>
 			<p class="contact-eyebrow">CONTACTO.EXE</p>
 			<h2 id="contact-title">Contacto</h2>
 		</header>
 
 		<div class="contact-grid">
 			{
-				contactCards.map((contact) => (
+				contactCards.map((contact, index) => (
 					<article
 						class={`contact-card contact-card--${contact.theme}`}
 						aria-labelledby={`contact-${contact.theme}-title`}
+						data-reveal
+						style={`--reveal-delay: ${index * 90 + 70}ms`}
 					>
 						<header class="contact-card__titlebar">
 							<h3 id={`contact-${contact.theme}-title`}>{contact.title}</h3>
