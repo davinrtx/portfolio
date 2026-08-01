@@ -1,0 +1,47 @@
+---
+import "../styles/global.css";
+
+interface Props {
+	title?: string;
+	description?: string;
+	preloadImage?: string;
+	preloadMedia?: string;
+}
+
+const {
+	title = "Damian Aceves | Portfolio",
+	description = "Portfolio de Damian Aceves, desarrollador de software.",
+	preloadImage,
+	preloadMedia,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/windows.webp" />
+		{
+			preloadImage && (
+				<link
+					rel="preload"
+					as="image"
+					href={preloadImage}
+					media={preloadMedia}
+					fetchpriority="high"
+				/>
+			)
+		}
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		<script is:inline>
+			document.documentElement.classList.add("js");
+		</script>
+		<slot name="head" />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

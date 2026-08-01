@@ -1,6 +1,12 @@
 ---
 import "@fontsource-variable/pixelify-sans";
 
+interface Props {
+	homeHref?: string;
+}
+
+const { homeHref = "#inicio" } = Astro.props;
+
 const initialTime = new Intl.DateTimeFormat("en-US", {
 	hour: "numeric",
 	minute: "2-digit",
@@ -8,7 +14,7 @@ const initialTime = new Intl.DateTimeFormat("en-US", {
 ---
 
 <footer class="taskbar-footer">
-	<a class="start-button" href="#inicio" aria-label="Volver al inicio">
+	<a class="start-button" href={homeHref} aria-label="Volver al inicio">
 		<img
 			src="/images/icono_windows.webp"
 			alt=""

@@ -103,6 +103,10 @@ html {
 	scrollbar-width: auto;
 }
 
+html.project-modal-open {
+	overflow: hidden;
+}
+
 /* Keep the page scrollbar in the same retro desktop style as the interface. */
 ::-webkit-scrollbar {
 	width: 17px;

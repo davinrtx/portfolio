@@ -1,36 +1,15 @@
 ---
 import styles from "./ProjectsGallery.module.css";
+import {
+	getProjectHref,
+	projects,
+	type ProjectCategory,
+} from "../../data/projects";
 
 // Componente interno reutilizado por la sección de proyectos.
-type ProjectCategory = "Web" | "Móvil";
 type ProjectFilter = "Todos" | ProjectCategory;
 
-interface Project {
-	id: number;
-	title: string;
-	windowTitle: string;
-	description: string;
-	category: ProjectCategory;
-	imageSrc: string | null;
-	imageAlt: string;
-	url: string | null;
-}
-
 const filters: ProjectFilter[] = ["Todos", "Web", "Móvil"];
-const projects: Project[] = [
-	{
-		id: 1,
-		title: "App de Finanzas",
-		windowTitle: "finanzas_app.exe",
-		description:
-			"Aplicación móvil para registrar y visualizar gastos e ingresos de forma simple e intuitiva.",
-		category: "Móvil",
-		// Reemplaza null con la ruta pública cuando la imagen esté disponible.
-		imageSrc: null,
-		imageAlt: "Vista previa de la aplicación móvil de finanzas",
-		url: null,
-	},
-];
 ---
 
 <div class={styles.gallery} data-projects-gallery>
@@ -73,10 +52,10 @@ const projects: Project[] = [
 
 					<div class={styles.projectMedia}>
 						{
-							project.imageSrc ? (
+							project.cover.kind === "image" ? (
 								<img
-									src={project.imageSrc}
-									alt={project.imageAlt}
+									src={project.cover.src}
+									alt={project.cover.alt}
 									loading="lazy"
 									decoding="async"
 								/>
@@ -84,8 +63,11 @@ const projects: Project[] = [
 								<div
 									class={styles.emptyProjectMedia}
 									role="img"
-									aria-label={`Espacio reservado para la imagen de ${project.title}`}
-								/>
+									aria-label={project.cover.alt}
+								>
+									<span aria-hidden="true">▧</span>
+									<small>{project.cover.label}</small>
+								</div>
 							)
 						}
 					</div>
@@ -97,26 +79,12 @@ const projects: Project[] = [
 							<span class={styles.category}>{project.category}</span>
 						</div>
 
-						<p>{project.description}</p>
+						<p>{project.summary}</p>
 
-						{
-							project.url ? (
-								<a class={styles.projectButton} href={project.url}>
-									<span>Ver proyecto</span>
-									<span aria-hidden="true">▶</span>
-								</a>
-							) : (
-								<button
-									class={styles.projectButton}
-									type="button"
-									disabled
-									title="Enlace del proyecto próximamente"
-								>
-									<span>Ver proyecto</span>
-									<span aria-hidden="true">▶</span>
-								</button>
-							)
-						}
+						<a class={styles.projectButton} href={getProjectHref(project)}>
+							<span>Ver proyecto</span>
+							<span aria-hidden="true">▶</span>
+						</a>
 					</div>
 				</article>
 			))

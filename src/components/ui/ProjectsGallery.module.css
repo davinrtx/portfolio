@@ -248,6 +248,28 @@
 	object-fit: cover;
 }
 
+.emptyProjectMedia {
+	display: grid;
+	align-content: center;
+	justify-items: center;
+	gap: 10px;
+	padding: 24px;
+	color: #315d52;
+	font-family: "Pixelify Sans Variable", monospace;
+	text-align: center;
+}
+
+.emptyProjectMedia > span {
+	font-size: clamp(3rem, 7vw, 5.5rem);
+	line-height: 1;
+	text-shadow: 3px 3px 0 rgb(68 53 29 / 18%);
+}
+
+.emptyProjectMedia > small {
+	font-size: 0.9rem;
+	letter-spacing: 0.08em;
+}
+
 .cardContent {
 	display: flex;
 	min-height: 215px;
