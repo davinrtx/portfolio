@@ -27,11 +27,6 @@ const galleryMedia = project.gallery.length > 0 ? project.gallery : [fallbackMed
 const initialMedia = galleryMedia[0]!;
 const description =
 	project.description.length > 0 ? project.description : [project.summary];
-const metadata = [
-	{ label: "Plataforma", value: project.platform },
-	{ label: "Estado", value: project.status },
-	{ label: "Año", value: project.year },
-].filter((item): item is { label: string; value: string } => Boolean(item.value));
 const demoUrl = project.links?.demo;
 const repositoryUrl = project.links?.repository;
 const hasLinks = Boolean(demoUrl || repositoryUrl);
@@ -39,7 +34,7 @@ const titleId = `project-${project.slug}-title`;
 ---
 
 <article class={styles.projectPage} aria-labelledby={titleId}>
-	<header class={styles.projectChrome}>
+	<header class={styles.projectChrome} data-reveal="header">
 		<a class={styles.backButton} href="/#proyectos">
 			<span aria-hidden="true">◀</span>
 			<span>Volver a proyectos</span>
@@ -65,7 +60,7 @@ const titleId = `project-${project.slug}-title`;
 			class:list={[styles.contentSection, styles.gallerySection]}
 			aria-labelledby={`${project.slug}-gallery-title`}
 		>
-			<header class={styles.sectionHeading}>
+			<header class={styles.sectionHeading} data-reveal>
 				<span class={styles.sectionNumber} aria-hidden="true">01</span>
 				<div>
 					<p>VISOR_DE_IMÁGENES.EXE</p>
@@ -73,7 +68,12 @@ const titleId = `project-${project.slug}-title`;
 				</div>
 			</header>
 
-			<div class={styles.galleryWindow} data-project-gallery>
+			<div
+				class={styles.galleryWindow}
+				data-project-gallery
+				data-reveal
+				style="--reveal-delay: 90ms"
+			>
 				<div class={styles.galleryToolbar}>
 					<div class={styles.fileIdentity}>
 						<span class={styles.fileIcon} aria-hidden="true">▧</span>
@@ -257,7 +257,7 @@ const titleId = `project-${project.slug}-title`;
 			class={styles.contentSection}
 			aria-labelledby={`${project.slug}-stack-title`}
 		>
-			<header class={styles.sectionHeading}>
+			<header class={styles.sectionHeading} data-reveal>
 				<span class={styles.sectionNumber} aria-hidden="true">02</span>
 				<div>
 					<p>STACK.INI</p>
@@ -265,7 +265,7 @@ const titleId = `project-${project.slug}-title`;
 				</div>
 			</header>
 
-			<div class={styles.stackPanel}>
+			<div class={styles.stackPanel} data-reveal style="--reveal-delay: 90ms">
 				{
 					project.technologies.length > 0 ? (
 						<ul class={styles.technologyList}>
@@ -295,7 +295,7 @@ const titleId = `project-${project.slug}-title`;
 			class={styles.contentSection}
 			aria-labelledby={`${project.slug}-about-title`}
 		>
-			<header class={styles.sectionHeading}>
+			<header class={styles.sectionHeading} data-reveal>
 				<span class={styles.sectionNumber} aria-hidden="true">03</span>
 				<div>
 					<p>README.TXT</p>
@@ -303,7 +303,7 @@ const titleId = `project-${project.slug}-title`;
 				</div>
 			</header>
 
-			<div class={styles.descriptionWindow}>
+			<div class={styles.descriptionWindow} data-reveal style="--reveal-delay: 90ms">
 				<div class={styles.descriptionToolbar} aria-hidden="true">
 					<span>Archivo</span>
 					<span>Edición</span>
@@ -321,19 +321,19 @@ const titleId = `project-${project.slug}-title`;
 			class={styles.contentSection}
 			aria-labelledby={`${project.slug}-details-title`}
 		>
-			<header class={styles.sectionHeading}>
+			<header class={styles.sectionHeading} data-reveal>
 				<span class={styles.sectionNumber} aria-hidden="true">04</span>
 				<div>
 					<p>PROPIEDADES_DEL_SISTEMA.CPL</p>
-					<h2 id={`${project.slug}-details-title`}>Características y detalles</h2>
+					<h2 id={`${project.slug}-details-title`}>Características</h2>
 				</div>
 			</header>
 
-			<div class={styles.detailsGrid}>
+			<div class={styles.detailsGrid} data-reveal style="--reveal-delay: 90ms">
 				<section class={styles.featuresPanel} aria-labelledby={`${project.slug}-features-title`}>
 					<div class={styles.panelTitlebar}>
 						<span aria-hidden="true">☑</span>
-						<h3 id={`${project.slug}-features-title`}>Funciones confirmadas</h3>
+						<h3 id={`${project.slug}-features-title`}>Funciones</h3>
 					</div>
 					<ul class={styles.featureList}>
 						{
@@ -346,28 +346,16 @@ const titleId = `project-${project.slug}-title`;
 						}
 					</ul>
 				</section>
-
-				<aside class={styles.metadataPanel} aria-labelledby={`${project.slug}-metadata-title`}>
-					<div class={styles.panelTitlebar}>
-						<span aria-hidden="true">ⓘ</span>
-						<h3 id={`${project.slug}-metadata-title`}>Ficha técnica</h3>
-					</div>
-					<dl class={styles.metadataList}>
-						{
-							metadata.map((item) => (
-								<div>
-									<dt>{item.label}</dt>
-									<dd>{item.value}</dd>
-								</div>
-							))
-						}
-					</dl>
-				</aside>
 			</div>
 
 			{
 				hasLinks && (
-					<div class={styles.projectLinks} aria-label="Enlaces del proyecto">
+					<div
+						class={styles.projectLinks}
+						aria-label="Enlaces del proyecto"
+						data-reveal
+						style="--reveal-delay: 120ms"
+					>
 						{demoUrl && (
 							<a href={demoUrl} target="_blank" rel="noreferrer">
 								<span aria-hidden="true">▶</span>
@@ -385,7 +373,11 @@ const titleId = `project-${project.slug}-title`;
 			}
 		</section>
 
-		<nav class={styles.projectNavigation} aria-label="Navegación entre proyectos">
+		<nav
+			class={styles.projectNavigation}
+			aria-label="Navegación entre proyectos"
+			data-reveal
+		>
 			{
 				previousProject ? (
 					<a class={styles.adjacentProject} href={getProjectHref(previousProject)}>

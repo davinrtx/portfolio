@@ -26,33 +26,7 @@ import Layout from "../layouts/Layout.astro";
 	<Footer />
 
 	<script>
-		const revealTargets = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
 		const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-		const reveal = (element: HTMLElement) => {
-			element.dataset.revealed = "";
-		};
-
-		if (reducedMotion.matches || !("IntersectionObserver" in window)) {
-			revealTargets.forEach(reveal);
-		} else {
-			const observer = new IntersectionObserver(
-				(entries) => {
-					entries.forEach((entry) => {
-						if (!entry.isIntersecting) return;
-
-						reveal(entry.target as HTMLElement);
-						observer.unobserve(entry.target);
-					});
-				},
-				{
-					rootMargin: "0px 0px -15% 0px",
-					threshold: 0.08,
-				},
-			);
-
-			revealTargets.forEach((element) => observer.observe(element));
-		}
 
 		const animatedSections = Array.from(
 			document.querySelectorAll<HTMLElement>("[data-animated-section]"),
