@@ -6,10 +6,16 @@ Me gusta transformar ideas en experiencias digitales claras, funcionales y atrac
 
 ## Lo que encontrarás
 
-- Proyectos web y móviles en los que he trabajado.
+- Proyectos web y móviles, con filtros por categoría y una página de detalle para cada uno.
 - Las tecnologías, frameworks y herramientas que forman parte de mi día a día.
 - Mi experiencia, formación y forma de entender el desarrollo de software.
 - Enlaces para contactarme, conocer mi perfil de GitHub y descargar mi CV.
+
+## Catálogo de proyectos
+
+La información de los proyectos se concentra en [`src/data/projects.ts`](src/data/projects.ts). Cada entrada define el identificador y *slug*, categoría, resumen, portada, galería, tecnologías, descripción, funcionalidades y enlaces disponibles.
+
+Esta fuente de datos alimenta tanto la galería de la página principal como las rutas estáticas de detalle en `/proyectos/[slug]`. Para añadir un nuevo proyecto basta con agregar sus recursos en `public/projects/` y una entrada al arreglo `projects`; la interfaz generará su tarjeta y su página automáticamente.
 
 ## Desarrollado con
 
@@ -24,14 +30,18 @@ Este portafolio fue desarrollado con:
 ```text
 Portfolio/
 ├── public/                         # Imágenes, iconos, favicon y CV
+│   └── projects/                    # Portadas y galerías de los proyectos
 ├── src/
 │   ├── components/
 │   │   ├── astro/                  # Secciones principales de la página
 │   │   ├── ui/                     # Componentes usados dentro de las secciones
 │   │   └── styles/                 # Bloques visuales construidos únicamente con CSS
+│   ├── data/
+│   │   └── projects.ts              # Catálogo y tipos de datos de los proyectos
 │   ├── layouts/                    # Layouts compartidos
 │   ├── pages/                      # Rutas del sitio
 │   │   └── index.astro
+│   │   └── proyectos/[slug].astro  # Detalle generado para cada proyecto
 │   └── styles/
 │       └── global.css              # Estilos globales
 ```
