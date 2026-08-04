@@ -26,7 +26,15 @@ const languages: Language[] = [
 >
 	<div class="stack-shell">
 		<header class="stack-heading" data-reveal>
-			<p class="stack-eyebrow">STACK.EXE</p>
+			<img
+				class="stack-section-icon"
+				src="/header_icons/tecnologias.webp"
+				alt=""
+				width="24"
+				height="24"
+				loading="lazy"
+				decoding="async"
+			/>
 			<h2 id="stack-title">Tecnologías</h2>
 		</header>
 
@@ -90,7 +98,7 @@ const languages: Language[] = [
 		--stack-ink: #171914;
 		--stack-forest: #153e34;
 		width: 100%;
-		padding: clamp(36px, 2vw, 72px) clamp(18px, 5vw, 80px) clamp(82px, 9vw, 136px);
+		padding: clamp(10px, 0.7vw, 40px) clamp(18px, 5vw, 80px) clamp(76px, 8vw, 120px);
 		border-inline: 3px ridge #b8a27d;
 		border-bottom: 3px ridge #b8a27d;
 		background-color: var(--stack-paper);
@@ -118,12 +126,12 @@ const languages: Language[] = [
 		text-align: center;
 	}
 
-	.stack-eyebrow {
-		margin: 0;
-		color: #6f2f20;
-		font-size: clamp(0.95rem, 1.2vw, 1.15rem);
-		font-weight: 700;
-		letter-spacing: 0.18em;
+	.stack-section-icon {
+		display: block;
+		width: clamp(40px, 1.3vw, 24px);
+		height: clamp(40px, 1.3vw, 24px);
+		object-fit: contain;
+		image-rendering: pixelated;
 	}
 
 	.stack-heading h2 {
@@ -160,10 +168,6 @@ const languages: Language[] = [
 
 		.stack-shell {
 			width: min(100%, 1080px);
-		}
-
-		.stack-eyebrow {
-			font-size: 0.9rem;
 		}
 
 		.stack-heading h2 {

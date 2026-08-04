@@ -7,7 +7,15 @@ import "../styles/AboutTimeline.css";
 <section class="about render-deferred" id="sobre-mi" aria-labelledby="about-title">
 	<div class="about-shell">
 		<header class="about-heading" data-reveal>
-			<p class="about-eyebrow">SOBRE_MI.EXE</p>
+			<img
+				class="about-section-icon"
+				src="/header_icons/sobre_mi.webp"
+				alt=""
+				width="24"
+				height="24"
+				loading="lazy"
+				decoding="async"
+			/>
 			<h2 id="about-title">Sobre mí</h2>
 		</header>
 
@@ -124,7 +132,7 @@ import "../styles/AboutTimeline.css";
 		--about-forest: #153e34;
 		--about-red: #8c2f25;
 		width: 100%;
-		padding: clamp(36px, 2vw, 72px) clamp(18px, 5vw, 80px) clamp(86px, 9vw, 140px);
+		padding: clamp(10px, 0.7vw, 40px) clamp(18px, 5vw, 80px) clamp(76px, 8vw, 120px);
 		border-inline: 3px ridge #b8a27d;
 		border-bottom: 3px ridge #b8a27d;
 		background-color: var(--about-paper);
@@ -152,12 +160,12 @@ import "../styles/AboutTimeline.css";
 		text-align: center;
 	}
 
-	.about-eyebrow {
-		margin: 0;
-		color: #6f2f20;
-		font-size: clamp(0.95rem, 1.2vw, 1.15rem);
-		font-weight: 700;
-		letter-spacing: 0.18em;
+	.about-section-icon {
+		display: block;
+		width: clamp(40px, 1.3vw, 24px);
+		height: clamp(40px, 1.3vw, 24px);
+		object-fit: contain;
+		image-rendering: pixelated;
 	}
 
 	.about-heading h2 {
@@ -176,10 +184,6 @@ import "../styles/AboutTimeline.css";
 		.about {
 			padding-top: 28px;
 			padding-bottom: 100px;
-		}
-
-		.about-eyebrow {
-			font-size: 0.9rem;
 		}
 
 		.about-heading h2 {
