@@ -14,6 +14,9 @@ const {
 	preloadImage,
 	preloadMedia,
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.url);
+const ogImageUrl = new URL("/images/icono_windows.webp", Astro.url);
 ---
 
 <!doctype html>
@@ -35,6 +38,11 @@ const {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImageUrl.href} />
+		<meta property="og:url" content={canonicalUrl.href} />
+		<meta property="og:type" content="website" />
 		<title>{title}</title>
 		<script is:inline>
 			document.documentElement.classList.add("js");
