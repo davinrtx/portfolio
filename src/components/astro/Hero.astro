@@ -1,5 +1,6 @@
 ---
 import "@fontsource-variable/pixelify-sans";
+import CodeTerminal from "../ui/CodeTerminal.astro";
 ---
 
 <section class="hero" aria-labelledby="hero-title">
@@ -8,8 +9,6 @@ import "@fontsource-variable/pixelify-sans";
 			<span class="hero-window hero-window--notes"></span>
 			<span class="hero-window hero-window--landscape"></span>
 		</div>
-
-		<span class="hero-scene"></span>
 	</div>
 
 	<img
@@ -40,6 +39,8 @@ import "@fontsource-variable/pixelify-sans";
 		</p>
 	</div>
 
+	<CodeTerminal />
+
 	<div class="hero-actions" role="group" aria-label="Acciones principales" data-reveal="hero" style="--reveal-delay: 340ms">
 		<a class="hero-button hero-button--primary" href="#proyectos">
 			<svg viewBox="0 0 24 24" aria-hidden="true">
@@ -68,7 +69,6 @@ import "@fontsource-variable/pixelify-sans";
 		</a>
 	</div>
 
-	<!-- La ventana de código se añadirá aquí cuando esté disponible su imagen. -->
 </section>
 
 <style>
@@ -120,21 +120,6 @@ import "@fontsource-variable/pixelify-sans";
 		user-select: none;
 	}
 
-	.hero-scene {
-		position: absolute;
-		z-index: 2;
-		inset: 0;
-		display: block;
-		width: 100%;
-		height: 100%;
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: 100% 100%;
-		filter: drop-shadow(-3px 2px 3px rgb(31 43 18 / 30%));
-		-webkit-mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 100%);
-		mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 100%);
-	}
-
 	.hero-windows {
 		position: absolute;
 		z-index: 1;
@@ -154,24 +139,20 @@ import "@fontsource-variable/pixelify-sans";
 	}
 
 	.hero-window--notes {
-		top: 2%;
-		right: 20%;
+		top: 6%;
+		right: 7%;
 		width: 15.25%;
 		aspect-ratio: 1174 / 795;
 	}
 
 	.hero-window--landscape {
-		top: 4.5%;
-		left: 36.5%;
+		top: 45.5%;
+		left: 76%;
 		width: 22.25%;
 		aspect-ratio: 1359 / 1013;
 	}
 
 	@media (min-width: 781px) {
-		.hero-scene {
-			background-image: url("/images/escritorio_hero.webp");
-		}
-
 		.hero-window--notes {
 			background-image: url("/images/notas_txt.webp");
 		}
