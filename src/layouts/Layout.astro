@@ -38,6 +38,34 @@ const {
 		<title>{title}</title>
 		<script is:inline>
 			document.documentElement.classList.add("js");
+
+			const navigationEntry = performance.getEntriesByType("navigation")[0];
+			const isReload = navigationEntry?.type === "reload";
+			const isStartHash = window.location.hash === "#inicio";
+			const shouldResetScroll = (isReload && !window.location.hash) || isStartHash;
+
+			if (shouldResetScroll && "scrollRestoration" in history) {
+				history.scrollRestoration = "manual";
+
+				window.addEventListener(
+					"pageshow",
+					() => {
+						requestAnimationFrame(() => {
+							requestAnimationFrame(() => {
+								const previousScrollBehavior =
+									document.documentElement.style.scrollBehavior;
+
+								document.documentElement.style.scrollBehavior = "auto";
+								window.scrollTo(0, 0);
+								document.documentElement.style.scrollBehavior =
+									previousScrollBehavior;
+								history.scrollRestoration = "auto";
+							});
+						});
+					},
+					{ once: true },
+				);
+			}
 		</script>
 		<slot name="head" />
 	</head>
