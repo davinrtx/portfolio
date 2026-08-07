@@ -1,4 +1,4 @@
-# Portfolio de Damian Aceves
+# Portfolio de Ricardo Gonzalez
 
 ¡Hola! Este es mi portafolio como desarrollador. Aquí comparto una parte de mi trabajo, las tecnologías con las que disfruto crear y un poco de mi recorrido como Ingeniero en Sistemas Computacionales.
 
@@ -48,9 +48,8 @@ Portfolio/
 
 ## Contacto
 
-- GitHub: [@Damianx64](https://github.com/Damianx64)
-- Correo: [aceves.x64@gmail.com](mailto:aceves.x64@gmail.com)
-- LinkedIn: [Damian Alexander Aceves Navarrete](https://www.linkedin.com/search/results/people/?keywords=Damian%20Alexander%20Aceves%20Navarrete)
+- GitHub: [@davinrtx](https://github.com/davinrtx)
+- Correo: [ricardodavidgonzalezbastardo@gmail.com](mailto:ricardodavidgonzalezbastardo@gmail.com)
 
 ## Licencia
 
