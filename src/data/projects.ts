@@ -128,9 +128,6 @@ export const projects: Project[] = [
 			"Sincronización automática con resolución determinista de conflictos.",
 			"Soporte para Android, iOS y web mediante Expo Router.",
 		],
-		links: {
-			repository: "https://github.com/Damianx64/Gasto",
-		},
 	},
 ];
 
