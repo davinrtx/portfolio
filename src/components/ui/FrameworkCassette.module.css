@@ -395,7 +395,7 @@
 	display: flex;
 	min-width: 0;
 	min-height: 52px;
-	flex: 1 1 calc(25% - var(--framework-gap));
+	flex: 1 1 calc(33.333% - var(--framework-gap));
 	align-items: center;
 	justify-content: center;
 	gap: clamp(5px, 0.9vw, 9px);
