@@ -1,6 +1,6 @@
 # Portfolio de Ricardo Gonzalez
 
-¡Hola! Este es mi portafolio como desarrollador. Aquí comparto una parte de mi trabajo, las tecnologías con las que disfruto crear y un poco de mi recorrido como Ingeniero en Sistemas Computacionales.
+¡Hola! Este es mi portafolio como desarrollador. Aquí comparto una parte de mi trabajo, las tecnologías con las que disfruto crear y un poco de mi recorrido como Técnico Superior Universitario en Informática.
 
 Me gusta transformar ideas en experiencias digitales claras, funcionales y atractivas. Para este sitio elegí una estética inspirada en el software de escritorio retro, porque también creo que los detalles hacen que una interfaz se sienta más cercana y memorable.
 
