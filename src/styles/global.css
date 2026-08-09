@@ -184,6 +184,10 @@ main {
 		contain-intrinsic-block-size: auto 1200px;
 	}
 
+	.projects.render-deferred {
+		contain-intrinsic-block-size: auto 850px;
+	}
+
 	.stack.render-deferred {
 		contain-intrinsic-block-size: auto 1700px;
 	}
@@ -224,10 +228,39 @@ html.js [data-reveal][data-revealed] {
 	translate: 0 0;
 }
 
+/* Con animaciones dirigidas por scroll el navegador solo anima lo que entra
+   al viewport, sin observer de JS. Las variantes hero/header (sobre el pliegue)
+   conservan el reveal por IntersectionObserver. */
+@supports (animation-timeline: view()) {
+	html.js [data-reveal]:not([data-reveal="hero"]):not([data-reveal="header"]) {
+		opacity: 1;
+		translate: 0 0;
+		transition: none;
+		animation: reveal-in linear both;
+		animation-timeline: view();
+		animation-range: entry 0% entry 100%;
+	}
+}
+
+@keyframes reveal-in {
+	from {
+		opacity: 0;
+		translate: 0 22px;
+	}
+	to {
+		opacity: 1;
+		translate: 0 0;
+	}
+}
+
 @media (max-width: 1180px) {
 	@supports (content-visibility: auto) {
 		.stack.render-deferred {
 			contain-intrinsic-block-size: auto 2900px;
+		}
+
+		.projects.render-deferred {
+			contain-intrinsic-block-size: auto 1250px;
 		}
 
 		.about.render-deferred {
@@ -245,5 +278,11 @@ html.js [data-reveal][data-revealed] {
 		opacity: 1;
 		translate: 0 0;
 		transition: none;
+	}
+
+	@supports (animation-timeline: view()) {
+		html.js [data-reveal]:not([data-reveal="hero"]):not([data-reveal="header"]) {
+			animation: none;
+		}
 	}
 }

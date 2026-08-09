@@ -24,11 +24,10 @@
 			inset 0 0 0 6px #456c60,
 			inset 0 0 0 9px #0c3028,
 			inset 11px 0 18px rgb(0 0 0 / 13%),
-			inset -9px 0 16px rgb(255 255 255 / 3%);
-		filter:
-			drop-shadow(1px 2px 0 #09231d)
-			drop-shadow(10px 12px 0 rgb(49 39 23 / 28%))
-			drop-shadow(6px 8px 8px rgb(49 39 23 / 18%));
+			inset -9px 0 16px rgb(255 255 255 / 3%),
+			1px 2px 0 #09231d,
+			10px 12px 0 rgb(49 39 23 / 28%),
+			6px 8px 8px rgb(49 39 23 / 18%);
 	}
 
 	.language-disk::before {
