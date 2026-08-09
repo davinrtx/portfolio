@@ -4,19 +4,21 @@ import "../styles/StackDisk.css";
 import FrameworkCassette from "../ui/FrameworkCassette.astro";
 import ToolsCabinet from "../ui/ToolsCabinet.astro";
 
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+
 type Language = {
 	name: string;
 	icon: string;
 };
 
 const languages: Language[] = [
-	{ name: "JavaScript", icon: "/stack_icons/javascript.svg" },
-	{ name: "TypeScript", icon: "/stack_icons/typescript.svg" },
-	{ name: "HTML", icon: "/stack_icons/html.svg" },
-	{ name: "CSS", icon: "/stack_icons/css.svg" },
-	{ name: "SQL", icon: "/stack_icons/sql.svg" },
-	{ name: "PHP", icon: "/stack_icons/php.svg" },
-	{ name: "Python", icon: "/stack_icons/python.svg" },
+	{ name: "JavaScript", icon: `${base}stack_icons/javascript.svg` },
+	{ name: "TypeScript", icon: `${base}stack_icons/typescript.svg` },
+	{ name: "HTML", icon: `${base}stack_icons/html.svg` },
+	{ name: "CSS", icon: `${base}stack_icons/css.svg` },
+	{ name: "SQL", icon: `${base}stack_icons/sql.svg` },
+	{ name: "PHP", icon: `${base}stack_icons/php.svg` },
+	{ name: "Python", icon: `${base}stack_icons/python.svg` },
 ];
 ---
 
@@ -30,7 +32,7 @@ const languages: Language[] = [
 		<header class="stack-heading" data-reveal>
 			<img
 				class="stack-section-icon"
-				src="/header_icons/tecnologias.webp"
+				src={`${base}header_icons/tecnologias.webp`}
 				alt=""
 				width="24"
 				height="24"

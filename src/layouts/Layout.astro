@@ -15,15 +15,23 @@ const {
 	preloadMedia,
 } = Astro.props;
 
-const canonicalUrl = new URL(Astro.url.pathname, Astro.url);
-const ogImageUrl = new URL("/images/icono_windows.webp", Astro.url);
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+const siteUrl = "https://davinrtx.github.io/portfolio/";
+// En build estatico Astro arma la request URL con new URL(site).origin (sin path)
+// + la ruta ya con base. Quitamos el prefijo de base y recomponemos contra siteUrl.
+const routePath = Astro.url.pathname.replace(base, "").replace(/^\//, "");
+const canonicalUrl = new URL(routePath, siteUrl);
+const ogImageUrl = new URL("images/og-card.png", siteUrl);
+const ogImageAlt =
+	"Tarjeta retro de Ricardo Gonzalez — Tecnico Superior Universitario en Informatica";
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="/windows.webp" />
+		<link rel="icon" href={`${base}favicon.svg`} />
+		<meta name="theme-color" content="#e9d9b9" />
 		{
 			preloadImage && (
 				<link
@@ -38,12 +46,32 @@ const ogImageUrl = new URL("/images/icono_windows.webp", Astro.url);
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalUrl.href} />
+		<meta property="og:locale" content="es_ES" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={ogImageUrl.href} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={ogImageAlt} />
 		<meta property="og:url" content={canonicalUrl.href} />
 		<meta property="og:type" content="website" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageUrl.href} />
+		<meta name="twitter:image:alt" content={ogImageAlt} />
 		<title>{title}</title>
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Ricardo Gonzalez",
+			"url": siteUrl,
+			"image": "https://davinrtx.github.io/portfolio/images/og-card.png",
+			"jobTitle": "Técnico Superior Universitario en Informática",
+			"description": description,
+			"knowsAbout": ["JavaScript", "TypeScript", "Astro", "Node.js", "SQL", "Python"],
+		})} />
 		<script is:inline>
 			document.documentElement.classList.add("js");
 

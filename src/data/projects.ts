@@ -1,3 +1,5 @@
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+
 export type ProjectCategory = "Web" | "Móvil";
 
 export type ProjectMedia =
@@ -43,7 +45,7 @@ export interface Project {
 
 const gastoCover: ProjectMedia = {
 	kind: "image",
-	src: "/projects/gasto/cover.webp",
+	src: `${base}projects/gasto/cover.webp`,
 	alt: "Pantalla de inicio de sesión de Gasto mostrada en un teléfono sobre un escritorio",
 	filename: "GASTO_COVER.WEBP",
 	caption: "Portada de Gasto · Inicio de sesión",
@@ -52,42 +54,42 @@ const gastoCover: ProjectMedia = {
 const gastoGallery: ProjectMedia[] = [
 	{
 		kind: "image",
-		src: "/projects/gasto/gallery/01-dashboard.webp",
+		src: `${base}projects/gasto/gallery/01-dashboard.webp`,
 		alt: "Dashboard de Gasto con balance total, ingresos, gastos, categorías y movimientos recientes",
 		filename: "01_DASHBOARD.WEBP",
 		caption: "Dashboard principal con balance y resumen de actividad",
 	},
 	{
 		kind: "image",
-		src: "/projects/gasto/gallery/02-movimientos.webp",
+		src: `${base}projects/gasto/gallery/02-movimientos.webp`,
 		alt: "Historial de movimientos de Gasto organizado por fecha con filtros de periodo",
 		filename: "02_MOVIMIENTOS.WEBP",
 		caption: "Historial de ingresos y gastos con filtros temporales",
 	},
 	{
 		kind: "image",
-		src: "/projects/gasto/gallery/03-nuevo_movimiento.webp",
+		src: `${base}projects/gasto/gallery/03-nuevo_movimiento.webp`,
 		alt: "Formulario de Gasto para registrar un movimiento con monto, tipo, categoría, descripción y fecha",
 		filename: "03_NUEVO_MOVIMIENTO.WEBP",
 		caption: "Registro de un nuevo ingreso o gasto",
 	},
 	{
 		kind: "image",
-		src: "/projects/gasto/gallery/04-reportes.webp",
+		src: `${base}projects/gasto/gallery/04-reportes.webp`,
 		alt: "Pantalla de reportes de Gasto con comparativa de ingresos y gastos y gráfica mensual",
 		filename: "04_REPORTES.WEBP",
 		caption: "Reportes visuales y comparativa mensual de finanzas",
 	},
 	{
 		kind: "image",
-		src: "/projects/gasto/gallery/05-categorias.webp",
+		src: `${base}projects/gasto/gallery/05-categorias.webp`,
 		alt: "Pantalla de ajustes de Gasto con categorías de ingresos y gastos editables",
 		filename: "05_CATEGORIAS.WEBP",
 		caption: "Administración de categorías personalizadas",
 	},
 	{
 		kind: "image",
-		src: "/projects/gasto/gallery/06-nueva_categoria.webp",
+		src: `${base}projects/gasto/gallery/06-nueva_categoria.webp`,
 		alt: "Formulario de Gasto para crear una categoría seleccionando icono y color",
 		filename: "06_NUEVA_CATEGORIA.WEBP",
 		caption: "Creación de categorías con icono y color personalizados",
@@ -106,12 +108,12 @@ export const projects: Project[] = [
 		cover: gastoCover,
 		gallery: gastoGallery,
 		technologies: [
-			{ name: "Expo", icon: "/stack_icons/expo.svg" },
-			{ name: "React Native", icon: "/stack_icons/react.svg" },
-			{ name: "Supabase", icon: "/stack_icons/supabase.svg" },
-			{ name: "Expo SQLite", icon: "/stack_icons/sql.svg" },
-			{ name: "TypeScript", icon: "/stack_icons/typescript.svg" },
-			{ name: "EAS Build", icon: "/stack_icons/expo.svg" },
+			{ name: "Expo", icon: `${base}stack_icons/expo.svg` },
+			{ name: "React Native", icon: `${base}stack_icons/react.svg` },
+			{ name: "Supabase", icon: `${base}stack_icons/supabase.svg` },
+			{ name: "Expo SQLite", icon: `${base}stack_icons/sql.svg` },
+			{ name: "TypeScript", icon: `${base}stack_icons/typescript.svg` },
+			{ name: "EAS Build", icon: `${base}stack_icons/expo.svg` },
 		],
 		description: [
 			"Gasto es una aplicación multiplataforma de finanzas personales diseñada para registrar ingresos y gastos, organizar los movimientos mediante categorías personalizadas y consultar el estado del dinero desde un dashboard claro.",
@@ -133,4 +135,4 @@ export const projects: Project[] = [
 ];
 
 export const getProjectHref = (project: Pick<Project, "slug">) =>
-	`/proyectos/${project.slug}`;
+	`${base}proyectos/${project.slug}`;

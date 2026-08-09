@@ -1,6 +1,8 @@
 ---
 import "@fontsource-variable/pixelify-sans";
 import ProjectsGallery from "../ui/ProjectsGallery.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 ---
 
 <section
@@ -11,7 +13,7 @@ import ProjectsGallery from "../ui/ProjectsGallery.astro";
 >
 	<img
 		class="projects-vine"
-		src="/images/planta_proyectos.webp"
+		src={`${base}images/planta_proyectos.webp`}
 		alt=""
 		aria-hidden="true"
 		loading="lazy"
@@ -22,7 +24,7 @@ import ProjectsGallery from "../ui/ProjectsGallery.astro";
 		<header class="projects-heading" data-reveal>
 			<img
 				class="projects-section-icon"
-				src="/header_icons/proyectos.webp"
+				src={`${base}header_icons/proyectos.webp`}
 				alt=""
 				width="24"
 				height="24"

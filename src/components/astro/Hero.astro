@@ -1,6 +1,8 @@
 ---
 import "@fontsource-variable/pixelify-sans";
 import CodeTerminal from "../ui/CodeTerminal.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 ---
 
 <section class="hero" aria-labelledby="hero-title">
@@ -13,7 +15,7 @@ import CodeTerminal from "../ui/CodeTerminal.astro";
 
 	<img
 		class="hero-plants"
-		src="/images/plantas_hero.webp"
+		src={`${base}images/plantas_hero.webp`}
 		alt=""
 		width="495"
 		height="2145"
@@ -25,7 +27,7 @@ import CodeTerminal from "../ui/CodeTerminal.astro";
 	<div class="hero-copy" data-reveal="hero" style="--reveal-delay: 210ms">
 		<img
 			class="hero-profile"
-			src="/images/foto_perfil.webp"
+			src={`${base}images/foto_perfil.webp`}
 			alt="Foto de perfil de Ricardo"
 			loading="eager"
 			decoding="async"
@@ -58,7 +60,7 @@ import CodeTerminal from "../ui/CodeTerminal.astro";
 
 		<a
 			class="hero-button hero-button--cv"
-			href="/CV David Gonzalez.pdf"
+			href={`${base}CV David Gonzalez.pdf`}
 			download="CV David Gonzalez.pdf"
 			title="Descargar CV"
 		>

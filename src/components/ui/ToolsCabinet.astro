@@ -7,22 +7,23 @@ interface Tool {
 	icon?: string;
 }
 
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 const genericToolIcon = "◆";
 const tools: Tool[] = [
-	{ name: "Git", icon: "/stack_icons/git.svg" },
-	{ name: "GitHub", icon: "/stack_icons/github.svg" },
-	{ name: "VS Code", icon: "/stack_icons/vscode.svg" },
-	{ name: "Codex", icon: "/stack_icons/codex.svg" },
-	{ name: "NPM", icon: "/stack_icons/npm.svg" },
-	{ name: "Vercel", icon: "/stack_icons/vercel.svg" },
-	{ name: "Netlify", icon: "/stack_icons/netlify.svg" },
-	{ name: "Supabase", icon: "/stack_icons/supabase.svg" },
-	{ name: "Docker", icon: "/stack_icons/docker.svg" },
-	{ name: "Postman", icon: "/stack_icons/postman.svg" },
-	{ name: "Insomnia", icon: "/stack_icons/insomnia.svg" },
-	{ name: "Claude", icon: "/stack_icons/claude.svg" },
-	{ name: "n8n", icon: "/stack_icons/n8n.svg" },
-	{ name: "Hermes Agent", icon: "/stack_icons/hermes-agent.png" },
+	{ name: "Git", icon: `${base}stack_icons/git.svg` },
+	{ name: "GitHub", icon: `${base}stack_icons/github.svg` },
+	{ name: "VS Code", icon: `${base}stack_icons/vscode.svg` },
+	{ name: "Codex", icon: `${base}stack_icons/codex.svg` },
+	{ name: "NPM", icon: `${base}stack_icons/npm.svg` },
+	{ name: "Vercel", icon: `${base}stack_icons/vercel.svg` },
+	{ name: "Netlify", icon: `${base}stack_icons/netlify.svg` },
+	{ name: "Supabase", icon: `${base}stack_icons/supabase.svg` },
+	{ name: "Docker", icon: `${base}stack_icons/docker.svg` },
+	{ name: "Postman", icon: `${base}stack_icons/postman.svg` },
+	{ name: "Insomnia", icon: `${base}stack_icons/insomnia.svg` },
+	{ name: "Claude", icon: `${base}stack_icons/claude.svg` },
+	{ name: "n8n", icon: `${base}stack_icons/n8n.svg` },
+	{ name: "Hermes Agent", icon: `${base}stack_icons/hermes-agent.png` },
 ];
 ---
 

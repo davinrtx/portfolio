@@ -2,6 +2,8 @@
 import "@fontsource-variable/pixelify-sans";
 import "../styles/ContactCards.css";
 
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+
 type ContactCard = {
 	title: string;
 	description: string;
@@ -18,7 +20,7 @@ const contactCards: ContactCard[] = [
 	{
 		title: "GitHub",
 		description: "github.com/davinrtx",
-		icon: "/images/github_bit.webp",
+		icon: `${base}images/github_bit.webp`,
 		iconWidth: 956,
 		iconHeight: 947,
 		href: "https://github.com/davinrtx",
@@ -29,7 +31,7 @@ const contactCards: ContactCard[] = [
 	{
 		title: "LinkedIn",
 		description: "linkedin.com/in/ricardogonz",
-		icon: "/images/linkedin_bit.webp",
+		icon: `${base}images/linkedin_bit.webp`,
 		iconWidth: 766,
 		iconHeight: 788,
 		href: "https://linkedin.com/in/ricardogonz",
@@ -40,7 +42,7 @@ const contactCards: ContactCard[] = [
 	{
 		title: "Correo",
 		description: "Háblame directamente",
-		icon: "/images/mail_bit.webp",
+		icon: `${base}images/mail_bit.webp`,
 		iconWidth: 1028,
 		iconHeight: 801,
 		href: "mailto:ricardodavidgonzalezbastardo@gmail.com?subject=Contacto%20desde%20tu%20portafolio",
@@ -55,7 +57,7 @@ const contactCards: ContactCard[] = [
 		<header class="contact-heading" data-reveal>
 			<img
 				class="contact-section-icon"
-				src="/header_icons/contacto.webp"
+				src={`${base}header_icons/contacto.webp`}
 				alt=""
 				width="24"
 				height="24"

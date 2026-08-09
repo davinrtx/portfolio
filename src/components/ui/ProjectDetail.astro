@@ -7,6 +7,8 @@ import {
 } from "../../data/projects";
 import styles from "./ProjectDetail.module.css";
 
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+
 interface Props {
 	project: Project;
 	previousProject?: Project;
@@ -35,7 +37,7 @@ const titleId = `project-${project.slug}-title`;
 
 <article class={styles.projectPage} aria-labelledby={titleId}>
 	<header class={styles.projectChrome} data-reveal="header">
-		<a class={styles.backButton} href="/#proyectos">
+		<a class={styles.backButton} href={`${base}#proyectos`}>
 			<span aria-hidden="true">◀</span>
 			<span>Volver a proyectos</span>
 		</a>
@@ -390,7 +392,7 @@ const titleId = `project-${project.slug}-title`;
 				)
 			}
 
-			<a class={styles.allProjectsButton} href="/#proyectos">
+			<a class={styles.allProjectsButton} href={`${base}#proyectos`}>
 				<span aria-hidden="true">▦</span>
 				Volver a proyectos
 			</a>

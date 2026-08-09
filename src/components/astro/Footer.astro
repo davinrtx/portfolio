@@ -7,7 +7,9 @@ interface Props {
 
 const { homeHref = "#inicio" } = Astro.props;
 
-const initialTime = new Intl.DateTimeFormat("en-US", {
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+
+const initialTime = new Intl.DateTimeFormat("es", {
 	hour: "numeric",
 	minute: "2-digit",
 }).format(new Date());
@@ -16,7 +18,7 @@ const initialTime = new Intl.DateTimeFormat("en-US", {
 <footer class="taskbar-footer">
 	<a class="start-button" href={homeHref} aria-label="Volver al inicio">
 		<img
-			src="/images/icono_windows.webp"
+			src={`${base}images/icono_windows.webp`}
 			alt=""
 			width="36"
 			height="30"
@@ -53,7 +55,7 @@ const initialTime = new Intl.DateTimeFormat("en-US", {
 	const clock = document.querySelector<HTMLTimeElement>("[data-clock]");
 
 	if (clock) {
-		const formatter = new Intl.DateTimeFormat("en-US", {
+		const formatter = new Intl.DateTimeFormat("es", {
 			hour: "numeric",
 			minute: "2-digit",
 		});
